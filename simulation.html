@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation & Predictions</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Style for gallery layout of benchmark buttons */
+        .benchmark-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 20px;
+        }
+        .benchmark-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 50px;
+            background-color: #0077cc;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .benchmark-item input[type="checkbox"] {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            transform: scale(1.3);
+        }
+        .benchmark-item label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Simulation & Predictions</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="tasks.html">Task Selection</a>
+        </nav>
+    </header>
+    <section>
+        <button onclick="downloadModel()">Try Your Model on New Data</button>
+        <button onclick="toggleBenchmarks()">Select Benchmarks</button>
+    </section>
+    <section id="benchmarkSection" style="display: none; padding-top: 20px;">
+        <h2>Select Benchmarks to Test Your Model:</h2>
+        <form id="benchmarkForm" class="benchmark-gallery"></form>
+        <button type="button" onclick="submitBenchmarks()" style="margin-top: 20px;">Submit Selected Benchmarks</button>
+    </section>
+    <script>
+        // Function to download a PyTorch model file
+        function downloadModel() {
+            const link = document.createElement('a');
+            link.href = 'path/to/fake_pytorch_model.pt'; // Placeholder link to PyTorch model
+            link.download = 'ASD_model.pt';
+            link.click();
+        }
+
+        // Function to toggle benchmark section visibility
+        function toggleBenchmarks() {
+            const section = document.getElementById('benchmarkSection');
+            section.style.display = section.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Function to dynamically create benchmark buttons with checkboxes in a gallery style
+        document.addEventListener("DOMContentLoaded", function() {
+            const benchmarkContainer = document.getElementById("benchmarkForm");
+            for (let i = 1; i <= 40; i++) {
+                const div = document.createElement("div");
+                div.className = "benchmark-item";
+                
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.value = `Benchmark #${i}`;
+                checkbox.id = `benchmark_${i}`;
+                checkbox.name = "benchmarks";
+
+                const label = document.createElement("label");
+                label.setAttribute("for", `benchmark_${i}`);
+                label.innerText = `Benchmark #${i}`;
+                label.onclick = function() {
+                    window.open(`https://example.com/fakeurl${i}`, "_blank");
+                };
+
+                div.appendChild(checkbox);
+                div.appendChild(label);
+                benchmarkContainer.appendChild(div);
+            }
+        });
+
+        // Function to submit selected benchmarks and navigate to results page
+        function submitBenchmarks() {
+            const selectedBenchmarks = Array.from(document.querySelectorAll("input[name='benchmarks']:checked"))
+                .map(checkbox => checkbox.value);
+            if (selectedBenchmarks.length === 0) {
+                alert("Please select at least one benchmark.");
+                return;
+            }
+            localStorage.setItem("selectedBenchmarks", JSON.stringify(selectedBenchmarks));
+            window.location.href = "results.html";
+        }
+    </script>
+</body>
+</html>

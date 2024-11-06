@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Benchmarks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Select Benchmarks</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+        </nav>
+    </header>
+    <section>
+        <h2>Select Benchmarks to Test Your Model:</h2>
+        <div class="benchmark-gallery" id="benchmarkGallery"></div>
+        <button type="button" onclick="submitBenchmarks()" style="margin-top: 20px;">Submit Selected Benchmarks</button>
+    </section>
+
+    <script>
+        // Populate benchmarks as thumbnail items with separate checkbox selection
+        document.addEventListener("DOMContentLoaded", function() {
+            const benchmarkGallery = document.getElementById("benchmarkGallery");
+            for (let i = 1; i <= 40; i++) {
+                const div = document.createElement("div");
+                div.className = "benchmark-thumbnail";
+                
+                // Checkbox for selection
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.id = `benchmark_${i}`;
+                checkbox.name = "benchmarks";
+                checkbox.value = `Benchmark #${i}`;
+
+                // Label as a clickable link to open the benchmark
+                const label = document.createElement("label");
+                label.setAttribute("for", `benchmark_${i}`);
+                label.innerHTML = `<div class="thumbnail-label">Benchmark #${i}</div>`;
+                label.onclick = (e) => {
+                    e.stopPropagation(); // Prevent checkbox from toggling
+                    window.open(`https://example.com/fakeurl${i}`, "_blank");
+                };
+
+                div.appendChild(checkbox);
+                div.appendChild(label);
+                benchmarkGallery.appendChild(div);
+            }
+        });
+
+        function submitBenchmarks() {
+            const selectedBenchmarks = Array.from(document.querySelectorAll("input[name='benchmarks']:checked"))
+                .map(checkbox => checkbox.value);
+            if (selectedBenchmarks.length === 0) {
+                alert("Please select at least one benchmark.");
+                return;
+            }
+            localStorage.setItem("selectedBenchmarks", JSON.stringify(selectedBenchmarks));
+            window.location.href = "results.html";
+        }
+    </script>
+</body>
+</html>

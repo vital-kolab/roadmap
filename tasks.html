@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select a Base Model</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- Include Plotly.js for interactive plots -->
+</head>
+<body>
+    <header>
+        <h1>Select a Base Model</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+        </nav>
+    </header>
+    <section>
+        <h2>Choose a Base Model to Explore:</h2>
+        <button onclick="loadModel('ResNet-50')">ResNet-50</button>
+        <button onclick="loadModel('VGG-16')">VGG-16</button>
+        <button onclick="loadModel('Inception-V3')">Inception-V3</button>
+        <p id="notification" style="color: green; font-weight: bold; padding-top: 10px;"></p>
+        <div id="modelArchitecture" style="height: 400px; margin-top: 20px;"></div> <!-- Model architecture diagram div -->
+    </section>
+
+    <section>
+        <h2>Select Hypothesis Modifications</h2>
+        <button onclick="toggleHypothesis('E/I Imbalance')">E/I Imbalance</button>
+        <button onclick="toggleHypothesis('Add Noise')">Add Noise</button>
+        <button onclick="toggleHypothesis('Hyperactivity')">Hyperactivity</button>
+        <button onclick="toggleHypothesis('No Feedback Connection')">No Feedback Connection</button>
+        <p id="selectedHypothesis" style="padding-top: 10px; font-weight: bold;"></p>
+    </section>
+
+    <section style="padding-top: 20px;">
+        <button id="proceedButton" onclick="goToSimulation()">Proceed to Simulation</button>
+    </section>
+
+    <script>
+        const selectedHypotheses = new Set();
+
+        function loadModel(modelName) {
+            document.getElementById('notification').innerText = `Loading ${modelName} architecture...`;
+            displayModelArchitecture(modelName);
+        }
+
+        function displayModelArchitecture(modelName) {
+            document.getElementById('modelArchitecture').innerHTML = "";
+            let layers, colors;
+            if (modelName === "ResNet-50") {
+                layers = ["Conv1", "ResBlock1", "ResBlock2", "ResBlock3", "AvgPool", "FC"];
+                colors = ["#6db3f2", "#1e69de", "#3a9bdc", "#5cb3ff", "#8dc3e9", "#4a8ec2"];
+            } else if (modelName === "VGG-16") {
+                layers = ["Conv1", "Conv2", "Pool1", "Conv3", "Conv4", "Pool2", "FC"];
+                colors = ["#7be0ad", "#56b2dc", "#4a8fc2", "#349dbd", "#61b3e9", "#73c9d6", "#98db98"];
+            } else if (modelName === "Inception-V3") {
+                layers = ["Conv1", "Inception1", "Inception2", "Inception3", "AvgPool", "FC"];
+                colors = ["#b2eeb2", "#91cfa4", "#72b098", "#a6d6b9", "#87c2af", "#98db98"];
+            } else {
+                layers = ["Input", "Layer1", "Layer2", "Output"];
+                colors = ["#c4e7c4", "#a1d1a1", "#8bc08b", "#6da96d"];
+            }
+            let xValues = layers.map((_, i) => i * 1.5);
+            let data = [{
+                x: xValues,
+                y: Array(layers.length).fill(1),
+                mode: 'markers+text',
+                marker: { color: colors, size: 20 },
+                text: layers,
+                textposition: 'top center',
+                type: 'scatter'
+            }];
+            let layout = {
+                title: `${modelName} Architecture Overview`,
+                showlegend: false,
+                xaxis: { showgrid: false, zeroline: false, showticklabels: false },
+                yaxis: { showgrid: false, zeroline: false, showticklabels: false },
+                shapes: layers.slice(0, -1).map((_, i) => ({
+                    type: "line",
+                    x0: xValues[i],
+                    y0: 1,
+                    x1: xValues[i+1],
+                    y1: 1,
+                    line: { color: "gray", width: 2 }
+                }))
+            };
+            Plotly.newPlot('modelArchitecture', data, layout);
+            document.getElementById('notification').innerText = `Model Architecture for ${modelName} Loaded.`;
+        }
+
+        function toggleHypothesis(hypothesis) {
+            if (selectedHypotheses.has(hypothesis)) {
+                selectedHypotheses.delete(hypothesis);
+            } else {
+                selectedHypotheses.add(hypothesis);
+            }
+            document.getElementById('selectedHypothesis').innerText = `Selected Hypotheses: ${Array.from(selectedHypotheses).join(', ')}`;
+        }
+
+        function goToSimulation() {
+            localStorage.setItem("selectedHypotheses", JSON.stringify(Array.from(selectedHypotheses)));
+            window.location.href = "simulation.html";
+        }
+    </script>
+</body>
+</html>

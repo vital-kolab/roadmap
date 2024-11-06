@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Experiment with Custom Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Run Experiment with Your Own Data</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+        </nav>
+    </header>
+    <section>
+        <h2>Upload Your Experiment Data</h2>
+        <p>Select your dataset to test the new ASD model with chosen hypotheses:</p>
+        <input type="file" id="uploadData" accept=".csv">
+        <button type="button" onclick="analyzeData()">Analyze Data</button>
+        <p id="experimentResult" style="padding-top: 20px; color: green;"></p>
+    </section>
+
+    <script>
+        function analyzeData() {
+            const fileInput = document.getElementById('uploadData');
+            if (fileInput.files.length === 0) {
+                alert("Please upload a dataset to proceed.");
+                return;
+            }
+            const file = fileInput.files[0];
+            document.getElementById('experimentResult').innerText = `Analyzing ${file.name}... Please wait.`;
+            
+            // Simulated analysis - in a real application, this would process the file server-side
+            setTimeout(() => {
+                document.getElementById('experimentResult').innerText = `Analysis complete for ${file.name}. Model performance results are ready.`;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

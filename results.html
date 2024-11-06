@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results Comparison</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- Include Plotly.js library -->
+</head>
+<body>
+    <header>
+        <h1>Results Comparison</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="simulation.html">Back to Simulation</a>
+        </nav>
+    </header>
+    <section>
+        <h2>Comparison of ASD Model and Neurotypical Benchmark Data</h2>
+        <div id="lineChart" style="height: 400px;"></div> <!-- Line chart div -->
+        <div id="barChart" style="height: 400px; margin-top: 30px;"></div> <!-- Bar chart div -->
+        <div id="hypothesisChart" style="height: 400px; margin-top: 30px;"></div> <!-- Hypothesis impact chart div -->
+    </section>
+
+    <script>
+        // Generate random benchmark scores for demonstration
+        const benchmarks = Array.from({ length: 10 }, (_, i) => `Benchmark ${i + 1}`);
+        const asdScores = Array.from({ length: 10 }, () => (0.75 + Math.random() * 0.2).toFixed(2));
+        const neurotypicalScores = Array.from({ length: 10 }, () => (0.65 + Math.random() * 0.2).toFixed(2));
+        const errorValues = Array(10).fill(0.05);  // Example constant error values
+
+        // Line chart for ASD vs Neurotypical scores with error bars
+        Plotly.newPlot('lineChart', [{
+            x: benchmarks,
+            y: asdScores,
+            mode: 'lines+markers',
+            name: 'ASD Model',
+            line: { color: 'rgb(0, 153, 204)' },
+            error_y: {
+                type: 'data',
+                array: errorValues,
+                visible: true,
+                color: 'rgb(0, 153, 204)',
+                capsize: 0
+            }
+        }, {
+            x: benchmarks,
+            y: neurotypicalScores,
+            mode: 'lines+markers',
+            name: 'Neurotypical Benchmark',
+            line: { color: 'rgb(102, 178, 255)' },
+            error_y: {
+                type: 'data',
+                array: errorValues,
+                visible: true,
+                color: 'rgb(102, 178, 255)',
+                capsize: 0
+            }
+        }], {
+            title: 'ASD vs Neurotypical Scores across Benchmarks',
+            xaxis: { title: 'Benchmarks' },
+            yaxis: { title: 'Score' }
+        });
+
+        // Bar chart showing distribution of scores with error bars
+        Plotly.newPlot('barChart', [{
+            x: benchmarks,
+            y: asdScores,
+            type: 'bar',
+            name: 'ASD Model',
+            marker: { color: 'rgb(0, 153, 204)' },
+            error_y: {
+                type: 'data',
+                array: errorValues,
+                visible: true,
+                color: 'rgb(0, 153, 204)',
+                capsize: 0
+            }
+        }, {
+            x: benchmarks,
+            y: neurotypicalScores,
+            type: 'bar',
+            name: 'Neurotypical Benchmark',
+            marker: { color: 'rgb(102, 178, 255)' },
+            error_y: {
+                type: 'data',
+                array: errorValues,
+                visible: true,
+                color: 'rgb(102, 178, 255)',
+                capsize: 0
+            }
+        }], {
+            title: 'Score Distribution by Benchmark',
+            barmode: 'group',
+            xaxis: { title: 'Benchmarks' },
+            yaxis: { title: 'Score' }
+        });
+
+        // Data for hypothesis impact on ASD model predictions with error bars
+        const hypotheses = ['E/I Imbalance', 'Add Noise', 'No Feedback', 'Hyperactivity'];
+        const improvementScores = [0.15, 0.1, 0.2, 0.12]; // Example improvement scores on ASD benchmarks
+        const hypothesisErrorValues = [0.03, 0.02, 0.04, 0.025]; // Example error values for hypotheses
+
+        // Bar chart showing hypothesis impact on ASD model predictions with error bars
+        Plotly.newPlot('hypothesisChart', [{
+            x: hypotheses,
+            y: improvementScores,
+            type: 'bar',
+            marker: {
+                color: ['rgb(0, 204, 204)', 'rgb(0, 153, 204)', 'rgb(51, 153, 255)', 'rgb(102, 178, 255)']
+            },
+            error_y: {
+                type: 'data',
+                array: hypothesisErrorValues,
+                visible: true,
+                color: 'rgb(0, 153, 204)',
+                capsize: 0
+            }
+        }], {
+            title: 'Impact of Hypotheses on ASD Model Prediction Accuracy',
+            xaxis: { title: 'Hypotheses (Mechanisms)' },
+            yaxis: { title: 'Improvement Score' }
+        });
+    </script>
+</body>
+</html>
