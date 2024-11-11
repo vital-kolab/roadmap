@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* Style for gallery layout of benchmark buttons */
+        .benchmark-category {
+            margin-top: 20px;
+        }
         .benchmark-gallery {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            padding-top: 20px;
+            padding-top: 10px;
         }
         .benchmark-item {
             position: relative;
@@ -52,9 +55,34 @@
     </section>
     <section id="benchmarkSection" style="display: none; padding-top: 20px;">
         <h2>Select Benchmarks to Test Your Model:</h2>
-        <form id="benchmarkForm" class="benchmark-gallery"></form>
+
+        <!-- Visual Discrimination Based Tasks -->
+        <div class="benchmark-category">
+            <h3>Visual Discrimination Based Tasks</h3>
+            <div class="benchmark-gallery" id="visualDiscriminationGallery"></div>
+        </div>
+
+        <!-- Visual Rating -->
+        <div class="benchmark-category">
+            <h3>Visual Rating</h3>
+            <div class="benchmark-gallery" id="visualRatingGallery"></div>
+        </div>
+
+        <!-- Odd One Out -->
+        <div class="benchmark-category">
+            <h3>Odd One Out</h3>
+            <div class="benchmark-gallery" id="oddOneOutGallery"></div>
+        </div>
+
+        <!-- Learning Tasks -->
+        <div class="benchmark-category">
+            <h3>Learning Tasks</h3>
+            <div class="benchmark-gallery" id="learningTasksGallery"></div>
+        </div>
+
         <button type="button" onclick="submitBenchmarks()" style="margin-top: 20px;">Submit Selected Benchmarks</button>
     </section>
+
     <script>
         // Function to download a PyTorch model file
         function downloadModel() {
@@ -70,29 +98,38 @@
             section.style.display = section.style.display === 'none' ? 'block' : 'none';
         }
 
-        // Function to dynamically create benchmark buttons with checkboxes in a gallery style
+        // Function to dynamically create benchmark buttons with checkboxes in a segmented layout
         document.addEventListener("DOMContentLoaded", function() {
-            const benchmarkContainer = document.getElementById("benchmarkForm");
-            for (let i = 1; i <= 40; i++) {
-                const div = document.createElement("div");
-                div.className = "benchmark-item";
-                
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.value = `Benchmark #${i}`;
-                checkbox.id = `benchmark_${i}`;
-                checkbox.name = "benchmarks";
+            const categories = {
+                visualDiscriminationGallery: ["Benchmark #1", "Benchmark #2", "Benchmark #3", "Benchmark #4", "Benchmark #5"],
+                visualRatingGallery: ["Benchmark #6", "Benchmark #7", "Benchmark #8"],
+                oddOneOutGallery: ["Benchmark #9", "Benchmark #10", "Benchmark #11", "Benchmark #12"],
+                learningTasksGallery: ["Benchmark #13", "Benchmark #14", "Benchmark #15", "Benchmark #16"]
+            };
 
-                const label = document.createElement("label");
-                label.setAttribute("for", `benchmark_${i}`);
-                label.innerText = `Benchmark #${i}`;
-                label.onclick = function() {
-                    window.open(`https://example.com/fakeurl${i}`, "_blank");
-                };
+            for (const [galleryId, benchmarks] of Object.entries(categories)) {
+                const gallery = document.getElementById(galleryId);
+                benchmarks.forEach(benchmark => {
+                    const div = document.createElement("div");
+                    div.className = "benchmark-item";
 
-                div.appendChild(checkbox);
-                div.appendChild(label);
-                benchmarkContainer.appendChild(div);
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.value = benchmark;
+                    checkbox.id = benchmark.replace(" ", "_");
+                    checkbox.name = "benchmarks";
+
+                    const label = document.createElement("label");
+                    label.setAttribute("for", checkbox.id);
+                    label.innerText = benchmark;
+                    label.onclick = function() {
+                        window.open(`https://www.sciencedirect.com/science/article/abs/pii/S0028393217301045?via%3Dihub`, "_blank");
+                    };
+
+                    div.appendChild(checkbox);
+                    div.appendChild(label);
+                    gallery.appendChild(div);
+                });
             }
         });
 
