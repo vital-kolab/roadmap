@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select a Base Model</title>
+    <title>Select a "Non autistic" Model</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- Include Plotly.js for interactive plots -->
 </head>
 <body>
     <header>
-        <h1>Select a Base Model</h1>
+        <h1>Select a "Non autistic" Model</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="features.html">Features</a>
         </nav>
     </header>
     <section>
-        <h2>Choose a Base Model to Explore:</h2>
+        <h2>Select a "Non autistic" Model to Explore:</h2>
         <button onclick="loadModel('ResNet-50')">ResNet-50</button>
         <button onclick="loadModel('VGG-16')">VGG-16</button>
         <button onclick="loadModel('Inception-V3')">Inception-V3</button>
@@ -25,7 +25,7 @@
     </section>
 
     <section>
-        <h2>Select Hypothesis Modifications</h2>
+        <h2>Select Hypothesis to implement neural markers of autism </h2>
         <button onclick="toggleHypothesis('E/I Imbalance')">E/I Imbalance</button>
         <button onclick="toggleHypothesis('Add Noise')">Add Noise</button>
         <button onclick="toggleHypothesis('Hyperactivity')">Hyperactivity</button>
