@@ -2,7 +2,7 @@
 /* Base Styles */
 body {
     font-family: Arial, sans-serif;
-    background-image: url('A_light_green,_high-transparency_background_image_.png');
+    background-image: 'A_visually_appealing_background_image_for_a_websit.png';
     background-size: cover;
     background-position: center;
     color: #333;
@@ -13,7 +13,7 @@ body {
 
 /* Header */
 header {
-    background: rgba(144, 238, 144, 0.8); /* Light green with transparency */
+    background: rgba(93, 101, 93, 0.8); /* Light green with transparency */
     color: #fff;
     padding: 1em 0;
     text-align: center;
@@ -50,7 +50,7 @@ section {
 /* Button Styles */
 button, .button {
     display: inline-block;
-    background: linear-gradient(145deg, #b2eeb2, #98db98); /* Gradient light green */
+    background: linear-gradient(145deg, #dbc998, #dbc998); /* Gradient light green */
     color: white;
     padding: 0.6em 1.2em;
     border: none;
@@ -63,7 +63,7 @@ button, .button {
 }
 
 button:hover, .button:hover {
-    background: linear-gradient(145deg, #98db98, #b2eeb2); /* Reverse gradient on hover */
+    background: linear-gradient(145deg, #dbc998, #dbc998); /* Reverse gradient on hover */
     transform: scale(1.05); /* Slight scale-up for effect */
 }
 
