@@ -1,149 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulation & Predictions</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Style for gallery layout of benchmark buttons */
-        .benchmark-category {
-            margin-top: 20px;
-        }
-        .benchmark-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding-top: 10px;
-        }
-        .benchmark-item {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 120px;
-            height: 50px;
-            background-color: #0077cc;
-            color: #fff;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: center;
-        }
-        .benchmark-item input[type="checkbox"] {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            transform: scale(1.3);
-        }
-        .benchmark-item label {
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Simulation Workflow</title>
+  <meta name="description" content="ROADMAP: submit simulation requests, run jobs on compute infrastructure, and turn outputs into benchmarked translational reports." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>Simulation & Predictions</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="features.html">Features</a>
-            <a href="tasks.html">Task Selection</a>
-        </nav>
-    </header>
-    <section>
-        <button onclick="downloadModel()">Try Your Model on New Data</button>
-        <button onclick="toggleBenchmarks()">Select Benchmarks</button>
-    </section>
-    <section id="benchmarkSection" style="display: none; padding-top: 20px;">
-        <h2>Select Benchmarks to Test Your Model:</h2>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="clinicians.html">Clinicians</a>
+      <a href="human-researchers.html">Human researchers</a>
+      <a href="animal-models.html">Model developers</a>
+      <a href="community.html">Community</a>
+      <a href="features.html">Platform</a>
+      <a href="submissions.html">Submit</a>
+      <a href="backend-architecture.html">Architecture</a>
+      <a href="simulation.html">Simulation</a>
+      <a href="tasks.html">Demo</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
 
-        <!-- Visual Discrimination Based Tasks -->
-        <div class="benchmark-category">
-            <h3>Visual Discrimination Based Tasks</h3>
-            <div class="benchmark-gallery" id="visualDiscriminationGallery"></div>
-        </div>
+<div class="page-hero">
+  <span class="eyebrow">Simulation workflow</span>
+  <h1>Turn a research request into a reproducible compute job.</h1>
+  <p class="lede">ROADMAP can present simulation as a simple public-facing request while running the actual workload on institutional or national compute. That means users interact with a guided form and results dashboard, while the platform handles packaging, queuing, tracking, and reporting.</p>
+</div>
 
-        <!-- Visual Rating -->
-        <div class="benchmark-category">
-            <h3>Visual Rating</h3>
-            <div class="benchmark-gallery" id="visualRatingGallery"></div>
-        </div>
+<section>
+  <div class="section-intro">
+    <div class="kicker">Recommended flow</div>
+    <h2>A seamless job pipeline for the public platform.</h2>
+  </div>
+  <div class="job-ladder">
+    <div class="job-step"><div><span class="job-tag">Step 1</span></div><div><h3>Collect a structured request</h3><p>Front-end users choose the task family, uploaded model or base model, perturbations, target datasets, and desired outputs.</p><div class="codeish">Form output → job_spec.json</div></div></div>
+    <div class="job-step"><div><span class="job-tag">Step 2</span></div><div><h3>Validate and package</h3><p>A lightweight backend validates the request, assigns a job ID, stores metadata, and builds a reproducible manifest for execution.</p><ul class="inline-list"><li>schema validation</li><li>versioned config</li><li>user permissions</li><li>data access checks</li></ul></div></div>
+    <div class="job-step"><div><span class="job-tag">Step 3</span></div><div><h3>Dispatch to Compute Canada / Alliance</h3><p>The backend submits a SLURM job using a standard runner, ideally inside Apptainer/Singularity containers so that environments stay reproducible.</p><div class="codeish">sbatch roadmap_run.sbatch --export=JOB_ID=RM-2043</div></div></div>
+    <div class="job-step"><div><span class="job-tag">Step 4</span></div><div><h3>Track queue and runtime status</h3><p>The platform polls job state or listens for status updates and shows friendly states such as queued, running, benchmarking, complete, or needs attention.</p></div></div>
+    <div class="job-step"><div><span class="job-tag">Step 5</span></div><div><h3>Benchmark outputs automatically</h3><p>Finished outputs are stored, compared against selected benchmarks, and summarized into model cards, plots, and role-specific evidence summaries.</p></div></div>
+    <div class="job-step"><div><span class="job-tag">Step 6</span></div><div><h3>Return results to the right audiences</h3><p>The same result can produce a technical report for developers, an evidence summary for clinicians, and a plain-language explanation for community members.</p></div></div>
+  </div>
+</section>
 
-        <!-- Odd One Out -->
-        <div class="benchmark-category">
-            <h3>Odd One Out</h3>
-            <div class="benchmark-gallery" id="oddOneOutGallery"></div>
-        </div>
+<section>
+  <div class="section-intro">
+    <div class="kicker">Suggested architecture</div>
+    <h2>What to build behind the GitHub Pages front-end.</h2>
+    <p class="lede">GitHub Pages is a good public front-end, but the simulation service itself should live behind an API. A simple architecture is enough to get started.</p>
+  </div>
+  <div class="arch-grid">
+    <div class="arch-card"><div class="arch-num">1</div><h3>Static front-end</h3><p>Keep the public website on GitHub Pages. Use forms, dashboards, and submission flows as the main interface layer.</p></div>
+    <div class="arch-card"><div class="arch-num">2</div><h3>API service</h3><p>Add a small backend, for example FastAPI, to receive submissions, authenticate users, and create job records.</p></div>
+    <div class="arch-card"><div class="arch-num">3</div><h3>Job database</h3><p>Store requests, job state, model metadata, and result pointers in PostgreSQL or another durable database.</p></div>
+    <div class="arch-card"><div class="arch-num">4</div><h3>SLURM dispatcher</h3><p>Use a controlled service account to turn validated requests into SLURM submissions on Compute Canada / Alliance.</p></div>
+    <div class="arch-card"><div class="arch-num">5</div><h3>Containerized runners</h3><p>Package model execution and analysis scripts in Apptainer images so the same request always runs in the same environment.</p></div>
+    <div class="arch-card"><div class="arch-num">6</div><h3>Result storage + reporting</h3><p>Write outputs to object storage or a shared results directory, then generate dashboard summaries and downloadable artifacts.</p></div>
+  </div>
+</section>
 
-        <!-- Learning Tasks -->
-        <div class="benchmark-category">
-            <h3>Learning Tasks</h3>
-            <div class="benchmark-gallery" id="learningTasksGallery"></div>
-        </div>
+<section class="grid grid-2">
+  <div class="card">
+    <h2>Why this feels seamless to users</h2>
+    <p>Users should not see cluster details. They should only see:</p>
+    <ul>
+      <li>a clean submission form,</li>
+      <li>clear job status updates,</li>
+      <li>estimated runtime,</li>
+      <li>email or dashboard notifications, and</li>
+      <li>results presented in the language appropriate to their role.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Best practices for ROADMAP</h2>
+    <ul>
+      <li>Use model templates so users are not starting from raw code every time.</li>
+      <li>Require metadata at submission time so benchmarking can be automated.</li>
+      <li>Separate public, restricted, and internal datasets clearly.</li>
+      <li>Keep a model registry with versions, benchmarks passed, and limitations.</li>
+      <li>Generate both technical reports and plain-language summaries from the same output.</li>
+    </ul>
+  </div>
+</section>
 
-        <button type="button" onclick="submitBenchmarks()" style="margin-top: 20px;">Submit Selected Benchmarks</button>
-    </section>
+<section>
+  <div class="callout">
+    <h2>Good minimum viable setup</h2>
+    <p><strong>Front-end:</strong> GitHub Pages.<br><strong>Backend:</strong> FastAPI.<br><strong>Database:</strong> PostgreSQL.<br><strong>Compute:</strong> SLURM on Compute Canada / Alliance.<br><strong>Containers:</strong> Apptainer.<br><strong>Notifications:</strong> email + dashboard status updates.</p>
+    <div class="actions"><a class="button secondary" href="tasks.html">Open prototype demo</a><a class="button secondary" href="animal-models.html">Go to model submission</a></div>
+  </div>
+</section>
 
-    <script>
-        // Function to download a PyTorch model file
-        function downloadModel() {
-            const link = document.createElement('a');
-            link.href = 'path/to/fake_pytorch_model.pt'; // Placeholder link to PyTorch model
-            link.download = 'ASD_model.pt';
-            link.click();
-        }
-
-        // Function to toggle benchmark section visibility
-        function toggleBenchmarks() {
-            const section = document.getElementById('benchmarkSection');
-            section.style.display = section.style.display === 'none' ? 'block' : 'none';
-        }
-
-        // Function to dynamically create benchmark buttons with checkboxes in a segmented layout
-        document.addEventListener("DOMContentLoaded", function() {
-            const categories = {
-                visualDiscriminationGallery: ["Benchmark #1", "Benchmark #2", "Benchmark #3", "Benchmark #4", "Benchmark #5"],
-                visualRatingGallery: ["Benchmark #6", "Benchmark #7", "Benchmark #8"],
-                oddOneOutGallery: ["Benchmark #9", "Benchmark #10", "Benchmark #11", "Benchmark #12"],
-                learningTasksGallery: ["Benchmark #13", "Benchmark #14", "Benchmark #15", "Benchmark #16"]
-            };
-
-            for (const [galleryId, benchmarks] of Object.entries(categories)) {
-                const gallery = document.getElementById(galleryId);
-                benchmarks.forEach(benchmark => {
-                    const div = document.createElement("div");
-                    div.className = "benchmark-item";
-
-                    const checkbox = document.createElement("input");
-                    checkbox.type = "checkbox";
-                    checkbox.value = benchmark;
-                    checkbox.id = benchmark.replace(" ", "_");
-                    checkbox.name = "benchmarks";
-
-                    const label = document.createElement("label");
-                    label.setAttribute("for", checkbox.id);
-                    label.innerText = benchmark;
-                    label.onclick = function() {
-                        window.open(`https://www.sciencedirect.com/science/article/abs/pii/S0028393217301045?via%3Dihub`, "_blank");
-                    };
-
-                    div.appendChild(checkbox);
-                    div.appendChild(label);
-                    gallery.appendChild(div);
-                });
-            }
-        });
-
-        // Function to submit selected benchmarks and navigate to results page
-        function submitBenchmarks() {
-            const selectedBenchmarks = Array.from(document.querySelectorAll("input[name='benchmarks']:checked"))
-                .map(checkbox => checkbox.value);
-            if (selectedBenchmarks.length === 0) {
-                alert("Please select at least one benchmark.");
-                return;
-            }
-            localStorage.setItem("selectedBenchmarks", JSON.stringify(selectedBenchmarks));
-            window.location.href = "results.html";
-        }
-    </script>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>ROADMAP</strong><br>
+      <span class="note">A human-centered platform for translational autism science.</span>
+    </div>
+    <div class="badges"><span class="badge">Simulation requests</span><span class="badge">SLURM dispatch</span><span class="badge">Benchmarking</span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>

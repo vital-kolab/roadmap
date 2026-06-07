@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Clinicians</title>
+  <meta name="description" content="Clinician portal for evidence review and clinical research translation." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="clinicians.html">Clinicians</a>
+      <a href="human-researchers.html">Human researchers</a>
+      <a href="animal-models.html">Model developers</a>
+      <a href="community.html">Community</a>
+      <a href="features.html">Platform</a>
+      <a href="submissions.html">Submit</a>
+      <a href="backend-architecture.html">Architecture</a>
+      <a href="simulation.html">Simulation</a>
+      <a href="tasks.html">Demo</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="page-hero audience-hero"><span class="eyebrow">Clinician portal</span><h1>Review evidence summaries for clinical research and translation planning.</h1><p class="lede">This portal is for clinicians and clinical researchers who want to understand what a model or dataset suggests, how confident the evidence is, and what would be needed before a finding could inform a clinical study, trial design, or product-facing use.</p><div class="actions"><a class="button primary" href="#evidence">Review evidence</a><a class="button secondary" href="#request">Request a summary</a></div></div>
+<section id="evidence"><div class="grid grid-3">
+  <div class="card"><div class="icon">EV</div><h3>Evidence summaries</h3><p>Concise summaries of model, human, animal, behavioral, and neural evidence with visible confidence levels.</p></div>
+  <div class="card"><div class="icon green">CL</div><h3>Clinical relevance</h3><p>Connections to phenotype relevance, functional impact, outcome measures, inclusion criteria, and research design.</p></div>
+  <div class="card"><div class="icon gold">BD</div><h3>Interpretation limits</h3><p>Clear separation between validated findings, exploratory results, model-only claims, and unsupported clinical use.</p></div>
+</div></section>
+<section><div class="section-intro"><div class="kicker">Evidence review</div><h2>Each ROADMAP evidence card answers the same core questions.</h2></div><table class="table"><tr><th>Question</th><th>Clinician-facing answer</th></tr><tr><td>What was measured?</td><td>Task, behavior, neural signal, clinical measure, dataset, or model output.</td></tr><tr><td>What does it suggest?</td><td>The specific hypothesis supported by the evidence, with uncertainty clearly stated.</td></tr><tr><td>How close is it to clinical use?</td><td>Translation-readiness level: exploratory, research-ready, trial-planning, or not appropriate for clinical use.</td></tr><tr><td>What should happen next?</td><td>Recommended validation step, dataset need, participant group, or clinical research design.</td></tr></table></section>
+<section id="request"><div class="section-intro"><div class="kicker">Request intake</div><h2>Request an evidence summary</h2></div><form class="form-card"><label>Topic</label><input placeholder="Model, dataset, construct, intervention idea, or clinical question"/><label>Clinical/research context</label><textarea rows="5" placeholder="Describe the question you want ROADMAP to summarize."></textarea><label>Output needed</label><select><option>Brief clinical research summary</option><option>Evidence card</option><option>Trial-planning note</option><option>Plain-language family/community explanation</option></select><p class="note">Prototype only: this request form should route to a review team before public deployment.</p><button class="button primary" type="button">Preview request</button></form></section>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>ROADMAP</strong><br>
+      <span class="note">A human-centered platform for organizing autism research evidence, computational models, datasets, and community feedback.</span>
+    </div>
+    <div class="badges"><span class="badge">Model submissions</span><span class="badge">Data submissions</span><span class="badge">Community feedback</span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

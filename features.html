@@ -1,27 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROADMAP Platform Features</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Platform</title>
+  <meta name="description" content="ROADMAP platform architecture for submissions, benchmarking, evidence cards, and community feedback." />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-    <header>
-        <h1>ROADMAP Platform Features</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="tasks.html">Simulations</a>
-            <a href="tasks.html">Predictions</a>
-        </nav>
-    </header>
-    <section>
-        <h2>SMART Model Integration</h2>
-        <p>Leverage sensory computable, mechanistic, architecturally referenced, and testable models.</p>
-    </section>
-    <section>
-        <h2>Data and Model Testbed</h2>
-        <p>Curated neurobehavioral data and top-performing models for autism-related tasks.</p>
-    </section>
+<body class="">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="clinicians.html">Clinicians</a>
+      <a href="human-researchers.html">Human researchers</a>
+      <a href="animal-models.html">Model developers</a>
+      <a href="community.html">Community</a>
+      <a href="features.html">Platform</a>
+      <a href="submissions.html">Submit</a>
+      <a href="backend-architecture.html">Architecture</a>
+      <a href="simulation.html">Simulation</a>
+      <a href="tasks.html">Demo</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="page-hero"><span class="eyebrow">Platform architecture</span><h1>A submission, benchmarking, and communication layer for translational autism research.</h1><p class="lede">ROADMAP connects model submissions, dataset submissions, evidence review, and community feedback in one structured workflow. The goal is to make autism research claims easier to test, compare, explain, and responsibly move toward clinical or product-facing translation.</p></div>
+<section>
+  <div class="section-intro"><div class="kicker">How ROADMAP works</div><h2>Every contribution becomes part of a traceable evidence record.</h2></div>
+  <div class="flow">
+    <div class="step"><div class="kicker">1</div><h3>Submit</h3><p>Models, datasets, tasks, clinical questions, or community feedback enter the platform.</p></div>
+    <div class="step"><div class="kicker">2</div><h3>Map</h3><p>Each item is linked to constructs, species, measures, assumptions, and relevant claims.</p></div>
+    <div class="step"><div class="kicker">3</div><h3>Benchmark</h3><p>Models and datasets are compared using transparent criteria and known limitations.</p></div>
+    <div class="step"><div class="kicker">4</div><h3>Review</h3><p>Evidence cards summarize confidence, uncertainty, and translation readiness.</p></div>
+    <div class="step"><div class="kicker">5</div><h3>Communicate</h3><p>Outputs are tailored to clinicians, researchers, developers, and community members.</p></div>
+  </div>
+</section>
+<section>
+  <div class="section-intro"><div class="kicker">Core modules</div><h2>Public platform components</h2></div>
+  <div class="grid grid-3">
+    <div class="card"><div class="icon green">DS</div><h3>Dataset registry</h3><p>Metadata, access conditions, task descriptions, participant context, measures, and analysis notes.</p></div>
+    <div class="card"><div class="icon">MR</div><h3>Model registry</h3><p>Model architecture, training objective, code links, benchmark results, predictions, and known failures.</p></div>
+    <div class="card"><div class="icon gold">EC</div><h3>Evidence cards</h3><p>Structured summaries of claims, evidence sources, uncertainty, readiness, and next validation steps.</p></div>
+    <div class="card"><div class="icon lav">CF</div><h3>Community feedback</h3><p>Questions, priority-setting, language review, and feedback on research or product-facing claims.</p></div>
+    <div class="card"><div class="icon green">BR</div><h3>Benchmark runner</h3><p>Standardized tests for model-data fit, generalization, cross-species comparison, and failure modes.</p></div>
+    <div class="card"><div class="icon gold">TR</div><h3>Translation readiness</h3><p>Clear labels for exploratory results, research-ready claims, trial-planning evidence, and unsupported use.</p></div>
+  </div>
+</section>
+<section><div class="callout"><h2>Product direction</h2><p>ROADMAP should launch as a professional web platform where the public landing page explains the mission, each portal supports concrete submissions or requests, and every output preserves evidence, uncertainty, and accountability.</p></div></section>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>ROADMAP</strong><br>
+      <span class="note">A human-centered platform for organizing autism research evidence, computational models, datasets, and community feedback.</span>
+    </div>
+    <div class="badges"><span class="badge">Model submissions</span><span class="badge">Data submissions</span><span class="badge">Community feedback</span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>

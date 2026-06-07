@@ -1,44 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROADMAP - Reliable Open-Access Digital Solution to Manage Autistic Phenotype</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Translational Autism Research Platform</title>
+  <meta name="description" content="ROADMAP: a public-facing platform for model submissions, data submissions, evidence review, simulation requests, and community feedback." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>ROADMAP</h1>
-        <p>Reliable Open-Access Digital Solution to Manage Autistic Phenotype</p>
-    </header>
-    <section>
-        <h2>Welcome to ROADMAP</h2>
-        <p>Revolutionizing autism research with AI and neuroscience.</p>
-        <p>Autism affects approximately 1 in 66 children in Canada and 1 in 54 children globally, with significant impacts on individuals, families, and society. ROADMAP integrates advanced research and clinical applications to provide targeted insights and precision solutions.</p>
-        <div class="image-placeholder" style="display: flex; flex-direction: column; gap: 20px; padding: 20px;">
-            <!-- Embedding the CDC autism data visualization tool in an iframe -->
-            <iframe src="https://www.cdc.gov/ncbddd/autism/data/index.html#data" width="100%" height="400" frameborder="0">
-                Your browser does not support iframes. Please visit <a href="https://www.cdc.gov/ncbddd/autism/data/index.html#data">CDC Autism Data</a> directly.
-            </iframe>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="clinicians.html">Clinicians</a>
+      <a href="human-researchers.html">Human researchers</a>
+      <a href="animal-models.html">Model developers</a>
+      <a href="community.html">Community</a>
+      <a href="features.html">Platform</a>
+      <a href="submissions.html">Submit</a>
+      <a href="backend-architecture.html">Architecture</a>
+      <a href="simulation.html">Simulation</a>
+      <a href="tasks.html">Demo</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="hero-shell">
+  <div class="hero">
+    <div>
+      <span class="eyebrow">From brain signals to real-world impact</span>
+      <h1>ROADMAP connects models, data, and community priorities.</h1>
+      <p class="lede">A translational autism research platform for model submission, dataset contribution, simulation requests, clinical evidence review, and community feedback.</p>
+      <p class="lede">Computational modelling is used as a translation layer across human studies, animal-model research, and product development — not to equate people with machines, but to make scientific claims explicit, comparable, and useful.</p>
+      <div class="actions">
+        <a class="button primary" href="#portals">Explore platform</a>
+        <a class="button secondary" href="submissions.html">Start a submission</a>
+        <a class="button secondary" href="tasks.html">Try a demo</a>
+      </div>
+      <div class="hero-metrics" aria-label="Platform capabilities">
+        <div class="hero-metric"><strong>Models</strong><span>Submit, version, perturb, benchmark</span></div>
+        <div class="hero-metric"><strong>Data</strong><span>Human, animal-model, task metadata</span></div>
+        <div class="hero-metric"><strong>Jobs</strong><span>Queue simulations on scalable compute</span></div>
+      </div>
+      <div class="trust-row">
+        <span class="trust-chip">Evidence-first</span>
+        <span class="trust-chip">Human-centered</span>
+        <span class="trust-chip">Cross-species translation</span>
+        <span class="trust-chip">Reproducible simulation</span>
+      </div>
+    </div>
+
+    <div class="panel showcase">
+      <div class="showcase-top">
+        <span class="showcase-pill active">Run simulations</span>
+        <span class="showcase-pill">Neural markers</span>
+        <span class="showcase-pill">Clinical optimization</span>
+        <span class="showcase-pill">Deploy models</span>
+        <span class="showcase-pill">Provide feedback</span>
+      </div>
+      <div class="showcase-main">
+        <div class="illustration-card">
+          <div class="illustration-grid"></div>
+          <div class="illustration-content">
+            <div class="illus-header compact-illus-header">
+              <div>
+                <h3>Simulation workspace</h3>
+              </div>
+            </div>
+            <div class="brain-orb">
+              <span class="spark"></span><span class="spark2"></span><span class="spark3"></span><span class="spark4"></span>
+            </div>
+            <div class="mini-screens">
+              <div class="wave-box">
+                <strong>Neural response traces</strong>
+                <div class="wave-lines"><span style="height:22%"></span><span style="height:78%"></span><span style="height:42%"></span><span style="height:88%"></span><span style="height:48%"></span><span style="height:70%"></span><span style="height:30%"></span><span style="height:82%"></span></div>
+              </div>
+              <div class="face-box">
+                <strong>Stimulus bank</strong>
+                <div class="face-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="tutorial-links" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
-            <a href="#">Learn more about autism research</a>
-            <a href="#">Explore our AI and neuroscience tools</a>
-            <a href="#">Getting started with ROADMAP</a>
+        <div class="console-card">
+          <h3>Submit a simulation</h3>
+          <div class="select-lite">
+            <strong>Select stimulus family</strong>
+            <div class="fake-select">Faces <span>▾</span></div>
+          </div>
+          <div class="select-lite">
+            <strong>Choose model or upload request</strong>
+            <div class="fake-select">ROADMAP base model <span>▾</span></div>
+          </div>
+          <div class="checkline">
+            <strong>Apply perturbations</strong>
+            <div class="checks-inline">
+              <span class="check-chip"><span class="box"></span>Noise</span>
+              <span class="check-chip"><span class="box"></span>E/I imbalance</span>
+              <span class="check-chip"><span class="box"></span>Top-down modulation</span>
+            </div>
+          </div>
+          <div class="checkline">
+            <strong>Execution target</strong>
+            <div class="fake-select">Queue on Compute Canada / Alliance <span>▾</span></div>
+          </div>
+          <div class="submit-bar">
+            <a class="button primary" href="submissions.html#job">Run simulation</a>
+            <a class="button secondary" href="submissions.html#model">Submit model</a>
+          </div>
+          <div class="progress-rail" aria-hidden="true"><span class="progress-node on"></span><span class="progress-node on"></span><span class="progress-node"></span><span class="progress-node"></span></div>
+          <div class="status-boxes">
+            <div class="status-box"><strong>124</strong><span>Benchmarked models</span></div>
+            <div class="status-box"><strong>38</strong><span>Queued simulation jobs</span></div>
+            <div class="status-box"><strong>91%</strong><span>Metadata-complete submissions</span></div>
+          </div>
         </div>
-        <a href="features.html" class="button" style="margin-top: 20px;">Explore Platform Features</a>
-    </section>
-    <footer>
-        <div class="footer-grid" style="margin-top: 20px;">
-            <a href="#">Support</a>
-            <a href="#">FAQ</a>
-            <a href="#">Tutorials</a>
-            <a href="#">Terms of Use</a>
-            <a href="#">Citations</a>
-            <a href="#">License</a>
-            <a href="#">Sponsors</a>
-            <a href="#">Contributors</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="capability-strip">
+    <div class="capability-tabs">
+      <a class="cap-tab active" href="submissions.html#job"><strong>Run simulations</strong><span>Dispatch requests to scalable compute and return benchmarked reports.</span></a>
+      <a class="cap-tab" href="submissions.html#data"><strong>Submit data</strong><span>Upload tasks, datasets, metadata, and analysis notes.</span></a>
+      <a class="cap-tab" href="submissions.html#model"><strong>Submit models</strong><span>Register models, hypotheses, and validation claims.</span></a>
+      <a class="cap-tab" href="clinicians.html"><strong>Review evidence</strong><span>See translation-readiness summaries and limits.</span></a>
+      <a class="cap-tab" href="community.html"><strong>Provide feedback</strong><span>Ask questions and shape research priorities.</span></a>
+    </div>
+  </div>
+</div>
+
+<section id="portals">
+  <div class="section-intro">
+    <div class="kicker">Four portals</div>
+    <h2>Start with the role that matches what you want to do.</h2>
+    <p class="lede">Each portal uses the same scientific record but offers different actions: review evidence, submit data, submit models, or ask for feedback.</p>
+  </div>
+  <div class="grid grid-4 portal-tabs">
+    <a class="card portal-card clinicians" href="clinicians.html">
+      <div>
+        <div class="portal-art">
+          <svg width="170" height="68" viewBox="0 0 170 68" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="8" y="10" width="58" height="44" rx="10" fill="#DCEBFF"/><rect x="78" y="6" width="84" height="52" rx="12" fill="#FFFFFF" stroke="#BFD1EA"/><path d="M96 21H142" stroke="#4B71B8" stroke-width="4" stroke-linecap="round"/><path d="M96 34H150" stroke="#9AB2D9" stroke-width="4" stroke-linecap="round"/><path d="M96 46H131" stroke="#C2D0E6" stroke-width="4" stroke-linecap="round"/><path d="M22 24H52" stroke="#4B71B8" stroke-width="5" stroke-linecap="round"/><path d="M37 13V39" stroke="#4B71B8" stroke-width="5" stroke-linecap="round"/></svg>
         </div>
-    </footer>
+        <div class="portal-label">Clinicians</div><h3>Review evidence</h3><p>Explore clinician-facing summaries, uncertainty levels, and research-readiness indicators.</p>
+      </div><span class="button tertiary">Enter portal</span></a>
+    <a class="card portal-card researchers" href="human-researchers.html">
+      <div>
+        <div class="portal-art">
+          <svg width="170" height="68" viewBox="0 0 170 68" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="14" y="8" width="58" height="50" rx="12" fill="#E7E1FA"/><rect x="91" y="13" width="18" height="35" rx="5" fill="#7C6CB5"/><rect x="114" y="23" width="18" height="25" rx="5" fill="#A698D4"/><rect x="137" y="17" width="18" height="31" rx="5" fill="#C6BBE7"/><circle cx="43" cy="33" r="14" stroke="#7C6CB5" stroke-width="4"/><path d="M52 43L62 52" stroke="#7C6CB5" stroke-width="4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="portal-label">Human researchers</div><h3>Submit data</h3><p>Contribute behavioral, neuroimaging, task, stimulus, and protocol information for benchmarking.</p>
+      </div><span class="button tertiary">Enter portal</span></a>
+    <a class="card portal-card models" href="animal-models.html">
+      <div>
+        <div class="portal-art">
+          <svg width="170" height="68" viewBox="0 0 170 68" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="10" y="12" width="150" height="42" rx="12" fill="#FFF8EF" stroke="#E7D2AE"/><path d="M26 43L46 24L66 35L87 21L108 40L128 30L146 44" stroke="#C9912E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="46" cy="24" r="4" fill="#C9912E"/><circle cx="87" cy="21" r="4" fill="#C9912E"/><circle cx="128" cy="30" r="4" fill="#C9912E"/></svg>
+        </div>
+        <div class="portal-label">Model developers</div><h3>Submit models</h3><p>Register computational or animal-model hypotheses, predictions, assays, and validation claims.</p>
+      </div><span class="button tertiary">Enter portal</span></a>
+    <a class="card portal-card community" href="community.html">
+      <div>
+        <div class="portal-art">
+          <svg width="170" height="68" viewBox="0 0 170 68" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="16" y="12" width="60" height="34" rx="14" fill="#DFF1E0"/><rect x="94" y="18" width="60" height="34" rx="14" fill="#EDF7EF" stroke="#BFDCC2"/><path d="M38 29H55" stroke="#5F8F63" stroke-width="4" stroke-linecap="round"/><path d="M110 35H137" stroke="#5F8F63" stroke-width="4" stroke-linecap="round"/><path d="M76 44L63 52V45" fill="#DFF1E0"/><path d="M94 50L106 57V50" fill="#EDF7EF" stroke="#BFDCC2"/></svg>
+        </div>
+        <div class="portal-label">Community</div><h3>Ask and respond</h3><p>Ask questions, flag unclear language, comment on priorities, and request plain-language explanations.</p>
+      </div><span class="button tertiary">Enter portal</span></a>
+  </div>
+</section>
+
+<section>
+  <div class="section-intro">
+    <div class="kicker">Simulation workflow</div>
+    <h2>How a simulation request moves through ROADMAP.</h2>
+    <p class="lede">A public-facing request can become a reproducible compute job, a benchmark comparison, and a role-specific report without forcing users to understand the infrastructure underneath.</p>
+  </div>
+  <div class="grid grid-4">
+    <div class="card"><div class="icon">01</div><h3>Structured request</h3><p>Users select a task, model, perturbation, and target benchmark through a guided submission flow.</p></div>
+    <div class="card"><div class="icon lav">02</div><h3>Queued on compute</h3><p>The request is packaged as a job manifest and dispatched to a Compute Canada / Alliance queue.</p></div>
+    <div class="card"><div class="icon gold">03</div><h3>Benchmark automatically</h3><p>Outputs are matched to human, animal-model, and model-comparison benchmarks already stored on the platform.</p></div>
+    <div class="card"><div class="icon green">04</div><h3>Return useful reports</h3><p>Results are turned into dashboard cards, clinician summaries, and community-readable interpretations.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="callout">
+    <h2>ROADMAP is a knowledge-communication platform.</h2>
+    <p>Its purpose is to make scientific claims more transparent, more comparable across systems, and more useful before they are carried into clinical studies, interventions, or products.</p>
+    <div class="actions"><a class="button secondary" href="features.html">See platform structure</a><a class="button secondary" href="simulation.html">See simulation pipeline</a></div>
+  </div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>ROADMAP</strong><br>
+      <span class="note">A human-centered platform for organizing autism research evidence, computational models, datasets, simulation jobs, and community feedback.</span>
+    </div>
+    <div class="badges"><span class="badge">Model submissions</span><span class="badge">Data submissions</span><span class="badge">Simulation jobs</span><span class="badge">Community feedback</span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Backend Architecture</title>
+  <meta name="description" content="Architecture plan for connecting ROADMAP to scalable compute infrastructure." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="clinicians.html">Clinicians</a><a href="human-researchers.html">Human researchers</a><a href="animal-models.html">Model developers</a><a href="community.html">Community</a><a href="features.html">Platform</a><a href="submissions.html">Submit</a><a href="backend-architecture.html">Architecture</a><a href="simulation.html">Simulation</a><a href="tasks.html">Demo</a></nav></div></header>
+<main id="main">
+
+<div class="page-hero">
+  <span class="eyebrow">Backend architecture</span>
+  <h1>Connect ROADMAP submissions to national-scale compute.</h1>
+  <p class="lede">The public website can remain static and polished while the heavy work runs behind an API layer. ROADMAP should treat every model, dataset, and simulation as a versioned record that can be validated, queued, benchmarked, and summarized.</p>
+</div>
+
+<section>
+  <div class="section-intro"><div class="kicker">System diagram</div><h2>Recommended production architecture</h2></div>
+  <div class="diagram-flow">
+    <div class="diagram-box"><strong>GitHub Pages UI</strong><br><span class="note">Public pages, portals, forms, status dashboard.</span></div>
+    <div class="diagram-arrow">→</div>
+    <div class="diagram-box"><strong>FastAPI backend</strong><br><span class="note">Auth, schema validation, files, job manifests.</span></div>
+    <div class="diagram-arrow">→</div>
+    <div class="diagram-box"><strong>SLURM dispatcher</strong><br><span class="note">Submits approved jobs with sbatch.</span></div>
+  </div>
+  <div class="diagram-flow">
+    <div class="diagram-box"><strong>PostgreSQL</strong><br><span class="note">Users, submissions, job state, audit trail.</span></div>
+    <div class="diagram-arrow">↔</div>
+    <div class="diagram-box"><strong>Object storage</strong><br><span class="note">Uploads, model packages, outputs, reports.</span></div>
+    <div class="diagram-arrow">↔</div>
+    <div class="diagram-box"><strong>Result dashboard</strong><br><span class="note">Evidence cards and role-specific summaries.</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-intro"><div class="kicker">Layers</div><h2>Build it in separable layers.</h2></div>
+  <div class="arch-layer"><div class="layer-name">1. Public front end</div><div><p>GitHub Pages can host the landing page, audience portals, and submission UI. Forms call the backend API rather than trying to run compute directly.</p><ul><li>Static HTML/CSS/JS</li><li>Accessible, role-specific pages</li><li>Submission previews and job-status cards</li></ul></div></div>
+  <div class="arch-layer"><div class="layer-name">2. API gateway</div><div><p>A FastAPI service receives submissions, validates JSON schemas, handles authentication, and creates durable records.</p><ul><li><code>/api/models</code></li><li><code>/api/datasets</code></li><li><code>/api/jobs</code></li><li><code>/api/jobs/{id}/status</code></li></ul></div></div>
+  <div class="arch-layer"><div class="layer-name">3. Registry database</div><div><p>PostgreSQL stores model metadata, dataset metadata, job manifests, permissions, benchmark selections, and audit logs.</p></div></div>
+  <div class="arch-layer"><div class="layer-name">4. Compute bridge</div><div><p>A controlled dispatcher converts validated simulation requests into SLURM jobs. The Alliance documentation identifies Slurm as the scheduler on its clusters, and jobs are submitted with account/resource options through commands such as <code>sbatch</code>.</p></div></div>
+  <div class="arch-layer"><div class="layer-name">5. Container runner</div><div><p>Each model run should use a pinned Apptainer/Singularity image or equivalent reproducible environment. That keeps user-submitted code away from the web server and makes runs auditable.</p></div></div>
+  <div class="arch-layer"><div class="layer-name">6. Benchmark + reporting</div><div><p>After a job finishes, a post-processing worker computes benchmark metrics and creates technical model cards, clinician-facing summaries, and community-readable explanations.</p></div></div>
+</section>
+
+<section class="grid grid-2">
+  <div class="card">
+    <h2>Minimal API contract</h2>
+    <div class="code-block">POST /api/jobs
+{
+  "job_name": "Face-noise robustness sweep",
+  "model_id": "RM-MODEL-0017",
+  "task_family": "Faces",
+  "perturbations": ["noise_sd_sweep", "feedback_ablation"],
+  "benchmarks": ["human_behavior", "neural_reliability"],
+  "resources": {"gpus": 1, "hours": 12, "memory_gb": 64}
+}</div>
+  </div>
+  <div class="card">
+    <h2>Minimal SLURM template</h2>
+    <div class="code-block">#!/bin/bash
+#SBATCH --job-name=roadmap_${JOB_ID}
+#SBATCH --account=${RAP_ACCOUNT}
+#SBATCH --time=12:00:00
+#SBATCH --gres=gpu:1
+#SBATCH --mem=64G
+
+module load apptainer
+apptainer exec roadmap_runner.sif \
+  python run_roadmap_job.py --job-id ${JOB_ID}</div>
+  </div>
+</section>
+
+<section>
+  <div class="section-intro"><div class="kicker">Security and governance</div><h2>Guardrails ROADMAP should include from the beginning.</h2></div>
+  <div class="grid grid-3">
+    <div class="card"><h3>Separate trust zones</h3><p>Keep public forms, backend validation, file storage, and compute execution in separate services with explicit permissions.</p></div>
+    <div class="card"><h3>No arbitrary web execution</h3><p>User code should never run on the web server. Only validated containers or reviewed pipelines should be dispatched.</p></div>
+    <div class="card"><h3>Dataset permissions</h3><p>Benchmark jobs should only access datasets that the submission is authorized to use.</p></div>
+    <div class="card"><h3>Audit every result</h3><p>Store model version, data version, container hash, job manifest, and benchmark code version for every output.</p></div>
+    <div class="card"><h3>Role-specific outputs</h3><p>Generate technical outputs for developers, evidence cards for clinicians, and accessible summaries for community users.</p></div>
+    <div class="card"><h3>Human review gates</h3><p>Require review before making claims public, especially for clinical or product-facing interpretation.</p></div>
+  </div>
+</section>
+
+<section><div class="callout"><h2>Recommended build order</h2><p>Start with the submission UI and JSON schemas, then build a FastAPI prototype, then add a manual SLURM dispatcher, then automate status tracking and report generation. This avoids overbuilding before the scientific submission schema is stable.</p></div></section>
+
+</main>
+<footer class="footer"><div class="footer-inner"><div><strong>ROADMAP</strong><br><span class="note">Backend architecture plan for simulation and benchmarking workflows.</span></div><div class="badges"><span class="badge">FastAPI</span><span class="badge">PostgreSQL</span><span class="badge">SLURM</span><span class="badge">Apptainer</span></div></div></footer>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Run Experiment with Custom Data</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Data Portal</title>
+  <meta name="description" content="ROADMAP: a unified human-technology platform for translational autism research." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>Run Experiment with Your Own Data</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="features.html">Features</a>
-        </nav>
-    </header>
-    <section>
-        <h2>Upload Your Experiment Data</h2>
-        <p>Select your dataset to test the new ASD model with chosen hypotheses:</p>
-        <input type="file" id="uploadData" accept=".csv">
-        <button type="button" onclick="analyzeData()">Analyze Data</button>
-        <p id="experimentResult" style="padding-top: 20px; color: green;"></p>
-    </section>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="clinicians.html">Clinicians</a>
+      <a href="human-researchers.html">Human researchers</a>
+      <a href="animal-models.html">Model developers</a>
+      <a href="community.html">Community</a>
+      <a href="features.html">Platform</a>
+      <a href="submissions.html">Submit</a>
+      <a href="backend-architecture.html">Architecture</a>
+      <a href="simulation.html">Simulation</a>
+      <a href="tasks.html">Demo</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
 
-    <script>
-        function analyzeData() {
-            const fileInput = document.getElementById('uploadData');
-            if (fileInput.files.length === 0) {
-                alert("Please upload a dataset to proceed.");
-                return;
-            }
-            const file = fileInput.files[0];
-            document.getElementById('experimentResult').innerText = `Analyzing ${file.name}... Please wait.`;
-            
-            // Simulated analysis - in a real application, this would process the file server-side
-            setTimeout(() => {
-                document.getElementById('experimentResult').innerText = `Analysis complete for ${file.name}. Model performance results are ready.`;
-            }, 2000);
-        }
-    </script>
+<div class="page-hero"><span class="eyebrow">Data portal concept</span><h1>Upload or register datasets for model testing, not opaque diagnosis.</h1><p class="lede">This prototype illustrates how ROADMAP could organize research data into standardized task, metadata, and evidence records for benchmarking.</p></div>
+<section class="controls">
+  <div class="control-box">
+    <h2>Register dataset</h2>
+    <label for="dataType">Dataset type</label><select id="dataType"><option>Human behavioral task</option><option>Human neuroimaging</option><option>Macaque neural/behavioral</option><option>Rodent assay</option><option>Community feedback survey</option></select>
+    <label for="taskDomain">Task domain</label><select id="taskDomain"><option>Social-emotional reciprocity</option><option>Sensory processing</option><option>Visual recognition</option><option>Audio-visual integration</option><option>Learning and generalization</option></select>
+    <label for="uploadData">CSV / metadata file</label><input type="file" id="uploadData" accept=".csv,.tsv,.json">
+    <label for="notes">Notes</label><textarea id="notes" rows="4" placeholder="Briefly describe task, participants/species, measures, and known limitations."></textarea>
+    <div class="actions"><button class="button primary" onclick="analyzeData()">Create evidence card</button></div>
+  </div>
+  <div class="control-box"><h2>Evidence card</h2><div id="experimentResult" class="output"><p class="note">Your dataset summary will appear here. The live platform would include validation, permissions, documentation, and benchmark compatibility checks.</p></div></div>
+</section>
+<section>
+  <div class="grid grid-3"><div class="card"><h3>FAIR-ready</h3><p>Dataset records should capture provenance, permissions, tasks, species, stimulus sets, and preprocessing status.</p></div><div class="card"><h3>Ethically scoped</h3><p>Human and community data require consent-aware use, transparent boundaries, and role-specific access.</p></div><div class="card"><h3>Benchmark compatible</h3><p>Data are mapped to model inputs and evaluation metrics before entering the testbed.</p></div></div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>ROADMAP</strong><br>
+      <span class="note">Reliable Open-Access Digital solution to Manage Autistic Phenotype — a human-centered platform for translational autism science.</span>
+    </div>
+    <div class="badges"><span class="badge">Accessible design</span><span class="badge">Cross-species translation</span><span class="badge">Clinical research</span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>

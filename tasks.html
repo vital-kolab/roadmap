@@ -1,107 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Build your own model</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- Include Plotly.js for interactive plots -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Model Sandbox</title>
+  <meta name="description" content="ROADMAP: a unified human-technology platform for translational autism research." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>Build your own model</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="features.html">Features</a>
-        </nav>
-    </header>
-    <section>
-        <h2>Select a "Non autistic" Model to Explore:</h2>
-        <button onclick="loadModel('ResNet-50')">ResNet-50</button>
-        <button onclick="loadModel('VGG-16')">VGG-16</button>
-        <button onclick="loadModel('Inception-V3')">Inception-V3</button>
-        <p id="notification" style="color: green; font-weight: bold; padding-top: 10px;"></p>
-        <div id="modelArchitecture" style="height: 400px; margin-top: 20px;"></div> <!-- Model architecture diagram div -->
-    </section>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="clinicians.html">Clinicians</a>
+      <a href="human-researchers.html">Human researchers</a>
+      <a href="animal-models.html">Model developers</a>
+      <a href="community.html">Community</a>
+      <a href="features.html">Platform</a>
+      <a href="submissions.html">Submit</a>
+      <a href="backend-architecture.html">Architecture</a>
+      <a href="simulation.html">Simulation</a>
+      <a href="tasks.html">Demo</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
 
-    <section>
-        <h2>Select Hypothesis to implement neural markers of autism </h2>
-        <button onclick="toggleHypothesis('E/I Imbalance')">E/I Imbalance</button>
-        <button onclick="toggleHypothesis('Add Noise')">Add Noise</button>
-        <button onclick="toggleHypothesis('Hyperactivity')">Hyperactivity</button>
-        <button onclick="toggleHypothesis('No Feedback Connection')">No Feedback Connection</button>
-        <p id="selectedHypothesis" style="padding-top: 10px; font-weight: bold;"></p>
-    </section>
+<div class="page-hero"><span class="eyebrow">Model sandbox</span><h1>Build an autism-relevant model variant by choosing a base ANN and mechanistic hypotheses.</h1><p class="lede">This front-end prototype shows the intended ROADMAP workflow: start with a brain-aligned model, implement parameterized neural motifs, and generate predictions to test against benchmarks.</p></div>
+<section class="controls">
+  <div class="control-box">
+    <h2>Configure model</h2>
+    <label for="baseModel">Base model</label>
+    <select id="baseModel">
+      <option>ResNet-50 visual model</option>
+      <option>CORnet-S recurrent visual model</option>
+      <option>Audio-visual recurrent model</option>
+      <option>Custom uploaded model</option>
+    </select>
+    <label>Hypothesis motifs</label>
+    <div class="check-list">
+      <label class="check"><input type="checkbox" data-hyp="ei"> <span><strong>E/I imbalance</strong><br><small>Change excitation-inhibition ratio.</small></span></label>
+      <label class="check"><input type="checkbox" data-hyp="noise"> <span><strong>Altered sensory noise</strong><br><small>Add stimulus- or layer-dependent noise.</small></span></label>
+      <label class="check"><input type="checkbox" data-hyp="gain"> <span><strong>Hyperactivity / gain</strong><br><small>Scale activity in selected layers.</small></span></label>
+      <label class="check"><input type="checkbox" data-hyp="feedback"> <span><strong>Feedback circuit difference</strong><br><small>Reduce recurrent or top-down feedback strength.</small></span></label>
+      <label class="check"><input type="checkbox" data-hyp="priors"> <span><strong>Altered priors / generalization</strong><br><small>Change category-level regularization or tuning width.</small></span></label>
+    </div>
+    <div id="params"></div>
+    <div class="actions"><button class="button primary" onclick="runSandbox()">Generate simulated prediction</button><button class="button secondary" onclick="resetSandbox()">Reset</button></div>
+  </div>
+  <div class="control-box">
+    <h2>Prediction preview</h2>
+    <div class="output" id="sandboxOutput">
+      <p class="note">Select one or more hypotheses, set parameters, then generate a simulated prediction. This demo uses transparent placeholder scoring to show the intended interface.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="section-intro"><div class="kicker">Why this matters</div><h2>Instead of saying “the model is autistic,” ROADMAP asks which mechanistic change best predicts a measurable pattern.</h2></div>
+  <div class="grid grid-3">
+    <div class="card"><h3>Comparable</h3><p>Different theories can be tested on the same task and dataset.</p></div>
+    <div class="card"><h3>Falsifiable</h3><p>Each parameter setting produces a behavioral or neural prediction that may fail.</p></div>
+    <div class="card"><h3>Translatable</h3><p>Successful motifs can guide interventions, enrichment routines, or more targeted experiments.</p></div>
+  </div>
+</section>
 
-    <section style="padding-top: 20px;">
-        <button id="proceedButton" onclick="goToSimulation()">Proceed to Simulation</button>
-    </section>
-
-    <script>
-        const selectedHypotheses = new Set();
-
-        function loadModel(modelName) {
-            document.getElementById('notification').innerText = `Loading ${modelName} architecture...`;
-            displayModelArchitecture(modelName);
-        }
-
-        function displayModelArchitecture(modelName) {
-            document.getElementById('modelArchitecture').innerHTML = "";
-            let layers, colors;
-            if (modelName === "ResNet-50") {
-                layers = ["Conv1", "ResBlock1", "ResBlock2", "ResBlock3", "AvgPool", "FC"];
-                colors = ["#6db3f2", "#1e69de", "#3a9bdc", "#5cb3ff", "#8dc3e9", "#4a8ec2"];
-            } else if (modelName === "VGG-16") {
-                layers = ["Conv1", "Conv2", "Pool1", "Conv3", "Conv4", "Pool2", "FC"];
-                colors = ["#7be0ad", "#56b2dc", "#4a8fc2", "#349dbd", "#61b3e9", "#73c9d6", "#98db98"];
-            } else if (modelName === "Inception-V3") {
-                layers = ["Conv1", "Inception1", "Inception2", "Inception3", "AvgPool", "FC"];
-                colors = ["#b2eeb2", "#91cfa4", "#72b098", "#a6d6b9", "#87c2af", "#98db98"];
-            } else {
-                layers = ["Input", "Layer1", "Layer2", "Output"];
-                colors = ["#c4e7c4", "#a1d1a1", "#8bc08b", "#6da96d"];
-            }
-            let xValues = layers.map((_, i) => i * 1.5);
-            let data = [{
-                x: xValues,
-                y: Array(layers.length).fill(1),
-                mode: 'markers+text',
-                marker: { color: colors, size: 20 },
-                text: layers,
-                textposition: 'top center',
-                type: 'scatter'
-            }];
-            let layout = {
-                title: `${modelName} Architecture Overview`,
-                showlegend: false,
-                xaxis: { showgrid: false, zeroline: false, showticklabels: false },
-                yaxis: { showgrid: false, zeroline: false, showticklabels: false },
-                shapes: layers.slice(0, -1).map((_, i) => ({
-                    type: "line",
-                    x0: xValues[i],
-                    y0: 1,
-                    x1: xValues[i+1],
-                    y1: 1,
-                    line: { color: "gray", width: 2 }
-                }))
-            };
-            Plotly.newPlot('modelArchitecture', data, layout);
-            document.getElementById('notification').innerText = `Model Architecture for ${modelName} Loaded.`;
-        }
-
-        function toggleHypothesis(hypothesis) {
-            if (selectedHypotheses.has(hypothesis)) {
-                selectedHypotheses.delete(hypothesis);
-            } else {
-                selectedHypotheses.add(hypothesis);
-            }
-            document.getElementById('selectedHypothesis').innerText = `Selected Hypotheses: ${Array.from(selectedHypotheses).join(', ')}`;
-        }
-
-        function goToSimulation() {
-            localStorage.setItem("selectedHypotheses", JSON.stringify(Array.from(selectedHypotheses)));
-            window.location.href = "simulation.html";
-        }
-    </script>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>ROADMAP</strong><br>
+      <span class="note">Reliable Open-Access Digital solution to Manage Autistic Phenotype — a human-centered platform for translational autism science.</span>
+    </div>
+    <div class="badges"><span class="badge">Accessible design</span><span class="badge">Cross-species translation</span><span class="badge">Clinical research</span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>

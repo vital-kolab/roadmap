@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Human Researchers</title>
+  <meta name="description" content="Human researcher portal for dataset, task, and protocol submissions." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="clinicians.html">Clinicians</a>
+      <a href="human-researchers.html">Human researchers</a>
+      <a href="animal-models.html">Model developers</a>
+      <a href="community.html">Community</a>
+      <a href="features.html">Platform</a>
+      <a href="submissions.html">Submit</a>
+      <a href="backend-architecture.html">Architecture</a>
+      <a href="simulation.html">Simulation</a>
+      <a href="tasks.html">Demo</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="page-hero audience-hero"><span class="eyebrow">Human researcher portal</span><h1>Submit datasets, tasks, and protocols for translational benchmarking.</h1><p class="lede">This portal is for researchers contributing human behavioral, neuroimaging, psychophysics, physiological, survey, task, stimulus, or intervention-development data. ROADMAP links each submission to model predictions, participant context, validation status, and clinical or community relevance.</p><div class="actions"><a class="button primary" href="#data-submit">Submit data</a><a class="button secondary" href="#requirements">Submission requirements</a></div></div>
+<section><div class="grid grid-3">
+  <div class="card"><div class="icon lav">DT</div><h3>Dataset registry</h3><p>Register datasets with task details, participant context, measures, preprocessing notes, and access conditions.</p></div>
+  <div class="card"><div class="icon">BM</div><h3>Benchmark mapping</h3><p>Map each dataset to constructs such as sensory gain, learning, uncertainty, attention, generalization, or social perception.</p></div>
+  <div class="card"><div class="icon green">EV</div><h3>Evidence cards</h3><p>Generate summaries that preserve sample details, uncertainty, limitations, and cross-species comparability.</p></div>
+</div></section>
+<section id="requirements"><div class="section-intro"><div class="kicker">Data submission</div><h2>Minimum information for a useful research contribution.</h2></div><table class="table">
+  <tr><th>Required item</th><th>Why it matters</th></tr>
+  <tr><td>Task and stimulus metadata</td><td>Allows models and other datasets to be compared on the same experimental structure.</td></tr>
+  <tr><td>Participant and protocol context</td><td>Preserves inclusion criteria, accommodations, consent constraints, and interpretation boundaries.</td></tr>
+  <tr><td>Outcome measures</td><td>Links behavior, neural readouts, clinical measures, or self-report to model predictions.</td></tr>
+  <tr><td>Access conditions</td><td>Clarifies whether data are open, controlled, anonymized, embargoed, or available only as summary statistics.</td></tr>
+</table></section>
+<section id="data-submit"><div class="section-intro"><div class="kicker">Prototype intake</div><h2>Submit a dataset or task</h2></div><form class="form-card"><label>Submission type</label><select><option>Behavioral dataset</option><option>Neuroimaging dataset</option><option>Task or stimulus set</option><option>Clinical research measure</option><option>Summary statistics only</option></select><label>Dataset title</label><input placeholder="Enter title"/><label>Constructs or hypotheses</label><textarea rows="5" placeholder="Describe what this dataset measures and which ROADMAP constructs it may test."></textarea><label>Access level</label><select><option>Open data</option><option>Controlled access</option><option>Metadata only</option><option>Private review first</option></select><p class="note">Prototype only: connect to OSF, Dataverse, OpenNeuro, REDCap, GitHub, or institutional storage before launch.</p><button class="button primary" type="button">Preview data submission</button></form></section>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>ROADMAP</strong><br>
+      <span class="note">A human-centered platform for organizing autism research evidence, computational models, datasets, and community feedback.</span>
+    </div>
+    <div class="badges"><span class="badge">Model submissions</span><span class="badge">Data submissions</span><span class="badge">Community feedback</span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

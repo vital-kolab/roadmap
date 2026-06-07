@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Community Portal</title>
+  <meta name="description" content="Community portal for questions, feedback, and plain-language research explanations." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="low-stimulation">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="clinicians.html">Clinicians</a>
+      <a href="human-researchers.html">Human researchers</a>
+      <a href="animal-models.html">Model developers</a>
+      <a href="community.html">Community</a>
+      <a href="features.html">Platform</a>
+      <a href="submissions.html">Submit</a>
+      <a href="backend-architecture.html">Architecture</a>
+      <a href="simulation.html">Simulation</a>
+      <a href="tasks.html">Demo</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="page-hero audience-hero">
+  <span class="eyebrow">Community portal</span>
+  <h1>Ask questions, request explanations, and shape what the platform pays attention to.</h1>
+  <p class="lede">This portal is for autistic people, families, advocates, educators, and community partners who want to understand ROADMAP, comment on research priorities, or ask for clearer explanations of autism research claims.</p>
+  <div class="actions"><a class="button primary" href="#feedback-form">Send feedback</a><a class="button secondary" href="#questions">Ask a question</a></div>
+</div>
+<section>
+  <div class="grid grid-3">
+    <div class="card"><h3>Request a plain-language explanation</h3><p>Ask ROADMAP to explain a model, dataset, task, or research claim without unnecessary technical language.</p></div>
+    <div class="card"><h3>Comment on priorities</h3><p>Tell the platform which research questions feel useful, irrelevant, concerning, or missing.</p></div>
+    <div class="card"><h3>Flag unclear or harmful wording</h3><p>Identify language that feels inaccurate, stigmatizing, confusing, or disconnected from lived experience.</p></div>
+  </div>
+</section>
+<section id="questions">
+  <div class="section-intro"><div class="kicker">What you can ask</div><h2>Community questions become part of the research translation record.</h2><p class="lede">Questions help identify where a scientific claim needs a clearer explanation, more evidence, or a stronger statement of limits.</p></div>
+  <div class="principle-list">
+    <div class="principle"><div class="num">1</div><div><strong>What does this research mean?</strong><p>Ask for a plain-language explanation of a model, task, dataset, or reported finding.</p></div></div>
+    <div class="principle"><div class="num">2</div><div><strong>Who could this help?</strong><p>Ask how a finding might connect to clinical research, supports, education, or product development.</p></div></div>
+    <div class="principle"><div class="num">3</div><div><strong>What evidence is missing?</strong><p>Ask whether a claim has been tested in humans, animal models, clinical settings, or only simulations.</p></div></div>
+  </div>
+</section>
+<section id="feedback-form">
+  <div class="section-intro"><div class="kicker">Feedback intake</div><h2>Community feedback form</h2><p class="lede">This prototype form shows the information ROADMAP will collect when community members ask a question or respond to a research claim.</p></div>
+  <form class="form-card">
+    <label for="topic">Topic</label>
+    <select id="topic" name="topic"><option>Question about a research claim</option><option>Request for plain-language explanation</option><option>Concern about wording or framing</option><option>Suggestion for a research priority</option><option>Feedback on a task, tool, or product idea</option></select>
+    <label for="message">Your question or feedback</label>
+    <textarea id="message" name="message" rows="6" placeholder="Write your question or feedback here."></textarea>
+    <label for="response">Preferred response format</label>
+    <select id="response" name="response"><option>Plain-language written response</option><option>Technical response with definitions</option><option>Short summary</option><option>Discussion with the research team</option></select>
+    <p class="note">Prototype only: connect this form to GitHub Issues, Google Forms, REDCap, or a secure institutional intake system before public launch.</p>
+    <button class="button primary" type="button">Preview submission</button>
+  </form>
+</section>
+<section><div class="callout"><h2>What ROADMAP will do with feedback</h2><p>Community feedback will be used to improve explanations, identify research priorities, revise unclear language, and flag claims that need more evidence before they are communicated outside the research setting.</p></div></section>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>ROADMAP</strong><br>
+      <span class="note">A human-centered platform for organizing autism research evidence, computational models, datasets, and community feedback.</span>
+    </div>
+    <div class="badges"><span class="badge">Model submissions</span><span class="badge">Data submissions</span><span class="badge">Community feedback</span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

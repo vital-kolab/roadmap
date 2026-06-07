@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Submit Models, Data, and Simulation Jobs</title>
+  <meta name="description" content="Submission forms for ROADMAP models, datasets, and simulation jobs." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="clinicians.html">Clinicians</a>
+      <a href="human-researchers.html">Human researchers</a>
+      <a href="animal-models.html">Model developers</a>
+      <a href="community.html">Community</a>
+      <a href="features.html">Platform</a>
+      <a href="submissions.html">Submit</a>
+      <a href="backend-architecture.html">Architecture</a>
+      <a href="simulation.html">Simulation</a>
+      <a href="tasks.html">Demo</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="page-hero">
+  <span class="eyebrow">Submission center</span>
+  <h1>Submit models, datasets, or simulation jobs.</h1>
+  <p class="lede">This page is a production-style UI mockup. It collects the metadata ROADMAP needs to validate submissions, route jobs to compute, and return benchmarked results to the right audience.</p>
+</div>
+
+<section>
+  <div class="submit-tabs" role="tablist" aria-label="Submission type">
+    <button class="submit-tab active" id="model" data-submit-tab="model" type="button">Model submission<small>Code, architecture, assumptions, benchmarks</small></button>
+    <button class="submit-tab" id="data" data-submit-tab="data" type="button">Dataset submission<small>Task, participants, measures, metadata</small></button>
+    <button class="submit-tab" id="job" data-submit-tab="job" type="button">Simulation job<small>Model, perturbation, queue target, outputs</small></button>
+  </div>
+
+  <div class="submission-shell">
+    <form class="submission-form" id="roadmapSubmissionForm">
+      <input type="hidden" id="submissionType" value="model" />
+      <div id="modelFields" data-form-section="model">
+        <h2>Model submission</h2>
+        <p class="note">Use this when a modeller wants to register a computational model, code package, or animal-model hypothesis for benchmarking.</p>
+        <div class="form-grid">
+          <label>Model name <span class="required-mark">*</span><input data-json="model_name" required placeholder="e.g., ROADMAP-SocialVision-v1" /></label>
+          <label>Model type <span class="required-mark">*</span><select data-json="model_type"><option>Artificial neural network</option><option>Mechanistic model</option><option>Animal-model hypothesis</option><option>Hybrid model</option></select></label>
+          <label>Code or repository URL<input data-json="repo_url" placeholder="https://github.com/..." /></label>
+          <label>Container available?<select data-json="container_status"><option>Apptainer/Singularity image available</option><option>Docker image available</option><option>No container yet</option><option>Need ROADMAP packaging support</option></select></label>
+          <label class="full">What claim should this model help evaluate? <span class="required-mark">*</span><textarea data-json="scientific_claim" rows="4" required placeholder="Describe the construct, phenotype, neural signature, or behavioral pattern the model is intended to explain."></textarea></label>
+          <label class="full">Known limitations<textarea data-json="known_limitations" rows="3" placeholder="List failure modes, unsupported uses, missing validations, or populations/tasks not yet tested."></textarea></label>
+          <label class="full">Upload model package<input data-json="model_file" type="file" /></label>
+        </div>
+      </div>
+
+      <div id="dataFields" data-form-section="data" hidden>
+        <h2>Dataset submission</h2>
+        <p class="note">Use this when a researcher wants to contribute a behavioral, imaging, neural, task, stimulus, or protocol dataset.</p>
+        <div class="form-grid">
+          <label>Dataset title <span class="required-mark">*</span><input data-json="dataset_title" placeholder="e.g., Audio-visual object learning cohort" /></label>
+          <label>Data type<select data-json="data_type"><option>Behavioral</option><option>fMRI</option><option>Electrophysiology</option><option>fUS</option><option>Task / stimulus protocol</option><option>Multimodal</option></select></label>
+          <label>Species / participant group<select data-json="species_group"><option>Human participants</option><option>Rhesus macaque</option><option>Rodent model</option><option>Mixed / cross-species</option><option>Other</option></select></label>
+          <label>Access level<select data-json="access_level"><option>Public metadata only</option><option>Controlled access</option><option>Internal ROADMAP review</option><option>Public dataset</option></select></label>
+          <label class="full">Task and outcome measures<textarea data-json="task_measures" rows="4" placeholder="Summarize stimuli, timing, response measures, neural measures, and primary outcomes."></textarea></label>
+          <label class="full">Ethics / consent notes<textarea data-json="ethics_notes" rows="3" placeholder="Describe ethics approval, consent constraints, de-identification, and sharing limits."></textarea></label>
+          <label class="full">Upload dataset or metadata file<input data-json="data_file" type="file" /></label>
+        </div>
+      </div>
+
+      <div id="jobFields" data-form-section="job" hidden>
+        <h2>Simulation job request</h2>
+        <p class="note">Use this when someone wants ROADMAP to run a model simulation or benchmark job on scalable compute.</p>
+        <div class="form-grid">
+          <label>Job name <span class="required-mark">*</span><input data-json="job_name" placeholder="e.g., Face-noise robustness sweep" /></label>
+          <label>Base model<select data-json="base_model"><option>ROADMAP base model</option><option>Uploaded model</option><option>Model registry entry</option><option>Custom container</option></select></label>
+          <label>Stimulus / task family<select data-json="task_family"><option>Faces</option><option>Audio-visual objects</option><option>Social interaction video</option><option>Sensory reliability</option><option>Learning and generalization</option></select></label>
+          <label>Compute target<select data-json="compute_target"><option>Alliance / Compute Canada SLURM queue</option><option>Local lab GPU server</option><option>Dry-run only</option></select></label>
+          <label>Requested GPU hours<input data-json="gpu_hours" type="number" min="0" step="1" placeholder="e.g., 12" /></label>
+          <label>Priority<select data-json="priority"><option>Standard research queue</option><option>Teaching/demo job</option><option>Urgent review</option></select></label>
+          <label class="full">Perturbations<textarea data-json="perturbations" rows="3" placeholder="e.g., noise SD sweep, E/I ratio sweep, feedback ablation, top-down modulation change."></textarea></label>
+          <label class="full">Desired outputs<textarea data-json="desired_outputs" rows="3" placeholder="e.g., behavioral accuracy curves, neural representational similarity, model card, clinician-facing summary."></textarea></label>
+        </div>
+      </div>
+
+      <div class="form-grid" style="margin-top:1rem;">
+        <label>Submitter name<input data-json="submitter_name" placeholder="Name" /></label>
+        <label>Email<input data-json="submitter_email" type="email" placeholder="email@institution.ca" /></label>
+        <label class="full">Notes for ROADMAP team<textarea data-json="team_notes" rows="3" placeholder="Anything the review team should know before validation or job dispatch."></textarea></label>
+      </div>
+      <div class="actions">
+        <button class="button primary" type="button" onclick="previewSubmission()">Preview submission</button>
+        <button class="button secondary" type="button" onclick="downloadSubmissionJSON()">Download JSON</button>
+        <button class="button secondary" type="button" onclick="fakeSubmitRoadmap()">Submit mock request</button>
+      </div>
+    </form>
+
+    <aside class="preview-panel" aria-live="polite">
+      <h3>Submission preview</h3>
+      <p class="note" style="color:#aebed2;">The production backend would receive this JSON, validate it, store the record, and create a compute job if needed.</p>
+      <pre id="submissionPreview">{
+  "submission_type": "model",
+  "status": "draft"
+}</pre>
+      <div class="status-timeline">
+        <div class="status-line"><span class="status-dot">1</span><p><strong>Draft</strong><br>Metadata collected from form.</p></div>
+        <div class="status-line"><span class="status-dot">2</span><p><strong>Validate</strong><br>Schema, permissions, files, and benchmark compatibility checked.</p></div>
+        <div class="status-line"><span class="status-dot">3</span><p><strong>Route</strong><br>Model/data review or simulation job dispatch.</p></div>
+        <div class="status-line"><span class="status-dot">4</span><p><strong>Report</strong><br>Evidence card, benchmark card, or job result returned.</p></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</main>
+<footer class="footer"><div class="footer-inner"><div><strong>ROADMAP</strong><br><span class="note">Submission UI for models, data, and simulation jobs.</span></div><div class="badges"><span class="badge">Model registry</span><span class="badge">Dataset registry</span><span class="badge">Job queue</span></div></div></footer>
+<script src="script.js"></script>
+</body>
+</html>
