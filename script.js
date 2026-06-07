@@ -273,3 +273,250 @@ function clearBenchmarkPlaygroundSelection(){
 }
 
 renderBenchmarkPlayground();
+
+
+// ROADMAP static navigation assistant: GitHub Pages-compatible guide.
+(function(){
+  if (window.__roadmapAssistantLoaded) return;
+  window.__roadmapAssistantLoaded = true;
+
+  const pages = {
+    home: {
+      label: 'Home',
+      quick: ['Which portal should I use?', 'Where are benchmarks?', 'Submit something'],
+      links: [
+        ['Clinician portal', 'clinicians.html'],
+        ['Human researcher portal', 'human-researchers.html'],
+        ['Neural hypothesis portal', 'animal-models.html'],
+        ['Community portal', 'community.html'],
+        ['Benchmark dashboard', 'benchmark.html'],
+        ['Benchmark playground', 'playground.html'],
+        ['Submit to ROADMAP', 'submissions.html']
+      ]
+    },
+    clinicians: {
+      label: 'Clinician portal',
+      quick: ['What can clinicians do?', 'Show evidence dashboard', 'What is translation readiness?'],
+      links: [
+        ['Clinician portal', 'clinicians.html'],
+        ['Evidence and benchmark dashboard', 'benchmark.html'],
+        ['Translation-readiness summaries', 'clinicians.html#translation-readiness'],
+        ['Back to home', 'index.html']
+      ]
+    },
+    researchers: {
+      label: 'Human researcher portal',
+      quick: ['Submit a dataset', 'Find benchmark families', 'What metadata is needed?'],
+      links: [
+        ['Human researcher portal', 'human-researchers.html'],
+        ['Submit dataset', 'submissions.html#data'],
+        ['Benchmark playground', 'playground.html'],
+        ['Benchmark dashboard', 'benchmark.html'],
+        ['Back to home', 'index.html']
+      ]
+    },
+    hypotheses: {
+      label: 'Neural hypothesis portal',
+      quick: ['Submit neural hypothesis', 'Brain-Score route', 'Benchmark a hypothesis'],
+      links: [
+        ['Neural hypothesis portal', 'animal-models.html'],
+        ['Submit neural hypothesis', 'submissions.html#model'],
+        ['Brain-Score simulation lane', 'simulation.html#brainscore'],
+        ['Benchmark dashboard', 'benchmark.html'],
+        ['Back to home', 'index.html']
+      ]
+    },
+    community: {
+      label: 'Community portal',
+      quick: ['Ask a question', 'Give feedback', 'Request plain-language summary'],
+      links: [
+        ['Community portal', 'community.html'],
+        ['Ask a question', 'community.html#ask-question'],
+        ['Share feedback', 'community.html#feedback-form'],
+        ['Benchmark dashboard', 'benchmark.html'],
+        ['Back to home', 'index.html']
+      ]
+    },
+    benchmarks: {
+      label: 'Benchmark area',
+      quick: ['Show benchmark registry', 'Find source papers', 'Select benchmarks', 'View results'],
+      links: [
+        ['Benchmark dashboard', 'benchmark.html'],
+        ['Benchmark playground', 'playground.html'],
+        ['Results comparison', 'results.html'],
+        ['Submit dataset', 'submissions.html#data'],
+        ['Back to home', 'index.html']
+      ]
+    },
+    submit: {
+      label: 'Submission area',
+      quick: ['Submit data', 'Submit neural hypothesis', 'Request simulation'],
+      links: [
+        ['Submit dataset', 'submissions.html#data'],
+        ['Submit neural hypothesis', 'submissions.html#model'],
+        ['Request simulation job', 'submissions.html#job'],
+        ['Benchmark playground', 'playground.html'],
+        ['Back to home', 'index.html']
+      ]
+    },
+    simulation: {
+      label: 'Simulation area',
+      quick: ['Run simulation', 'Brain-Score route', 'Compare results'],
+      links: [
+        ['Simulation workflow', 'simulation.html'],
+        ['Brain-Score simulation lane', 'simulation.html#brainscore'],
+        ['Benchmark playground', 'playground.html'],
+        ['Results comparison', 'results.html'],
+        ['Back to home', 'index.html']
+      ]
+    },
+    architecture: {
+      label: 'Architecture area',
+      quick: ['How would the chatbot work?', 'How does compute connect?', 'Back home'],
+      links: [
+        ['Architecture overview', 'backend-architecture.html'],
+        ['Simulation workflow', 'simulation.html'],
+        ['Submit a job request', 'submissions.html#job'],
+        ['Back to home', 'index.html']
+      ]
+    }
+  };
+
+  function contextKey(){
+    const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    if(path === 'index.html' || path === '') return 'home';
+    if(path.includes('clinicians')) return 'clinicians';
+    if(path.includes('human-researchers')) return 'researchers';
+    if(path.includes('animal-models')) return 'hypotheses';
+    if(path.includes('community')) return 'community';
+    if(path.includes('benchmark') || path.includes('playground') || path.includes('results')) return 'benchmarks';
+    if(path.includes('submissions')) return 'submit';
+    if(path.includes('simulation') || path.includes('tasks') || path.includes('experiment')) return 'simulation';
+    if(path.includes('architecture') || path.includes('features')) return 'architecture';
+    return 'home';
+  }
+
+  function globalAnswer(q, ctx){
+    const query = (q || '').toLowerCase();
+    const page = pages[ctx] || pages.home;
+    const allLinks = page.links;
+
+    const answer = (text, links = allLinks) => ({text, links});
+
+    if(/portal|where.*start|which/.test(query)){
+      return answer('Choose a portal based on what you want to do: clinicians review evidence, human researchers submit data, animal-model researchers submit neural hypotheses, and community members ask questions or provide feedback.', pages.home.links.slice(0,4));
+    }
+    if(/benchmark|dashboard|paper|source|dataset|registry/.test(query)){
+      return answer('Use the Benchmark Dashboard to see submitted datasets, source-linked benchmark records, and which hypotheses or simulations have been benchmarked. Use the Benchmark Playground to select benchmark families and preview coverage.', [
+        ['Benchmark dashboard', 'benchmark.html'], ['Benchmark playground', 'playground.html'], ['Results comparison', 'results.html'], ['Back to home', 'index.html']
+      ]);
+    }
+    if(/submit|upload|contribute/.test(query)){
+      return answer('Use the submission area to contribute a dataset, submit a neural hypothesis from animal-model work, or request a simulation job.', [
+        ['Submit dataset', 'submissions.html#data'], ['Submit neural hypothesis', 'submissions.html#model'], ['Request simulation job', 'submissions.html#job'], ['Back to home', 'index.html']
+      ]);
+    }
+    if(/neural|hypothesis|animal|mechanism|assay/.test(query)){
+      return answer('Animal-model users should submit neural hypotheses: candidate mechanisms, animal-model findings, predicted human/clinical signatures, assays, limitations, and benchmark needs.', [
+        ['Neural hypothesis portal', 'animal-models.html'], ['Submit neural hypothesis', 'submissions.html#model'], ['Benchmark dashboard', 'benchmark.html'], ['Back to home', 'index.html']
+      ]);
+    }
+    if(/brain.?score|neurotypical|simulation|compute|run/.test(query)){
+      return answer('Neurotypical model simulations are framed as a Brain-Score collaboration lane. ROADMAP then links those simulations to autism-relevant neural hypotheses, datasets, benchmarks, and evidence cards.', [
+        ['Simulation workflow', 'simulation.html'], ['Brain-Score simulation lane', 'simulation.html#brainscore'], ['Request simulation job', 'submissions.html#job'], ['Benchmark playground', 'playground.html']
+      ]);
+    }
+    if(/community|ask|question|feedback|plain|language/.test(query)){
+      return answer('Use the Community portal to ask a question, request a clearer explanation, comment on priorities, or provide feedback on language and interpretation.', [
+        ['Community portal', 'community.html'], ['Ask a question', 'community.html#ask-question'], ['Share feedback', 'community.html#feedback-form'], ['Back to home', 'index.html']
+      ]);
+    }
+    if(/clinician|clinical|readiness|evidence/.test(query)){
+      return answer('Clinicians can review evidence summaries, uncertainty, and translation-readiness indicators without needing to inspect every model or dataset directly.', [
+        ['Clinician portal', 'clinicians.html'], ['Benchmark dashboard', 'benchmark.html'], ['Back to home', 'index.html']
+      ]);
+    }
+    if(/researcher|human|fmri|behavior|data|metadata/.test(query)){
+      return answer('Human researchers can submit behavioral, neuroimaging, task, stimulus, protocol, and metadata records so that neural hypotheses and simulations can be benchmarked against them.', [
+        ['Human researcher portal', 'human-researchers.html'], ['Submit dataset', 'submissions.html#data'], ['Benchmark playground', 'playground.html'], ['Back to home', 'index.html']
+      ]);
+    }
+    if(/home|back|exit/.test(query)){
+      return answer('Return to the home page to choose a different portal.', [['Back to home', 'index.html']]);
+    }
+    return answer(`You are in the ${page.label}. I can help you find the right ROADMAP page, benchmark record, submission form, or portal. Try asking “Where are benchmarks?”, “Submit neural hypothesis”, or “Ask a question.”`, allLinks);
+  }
+
+  function renderLinks(links){
+    return `<div class="roadmap-assistant-link-list">${links.map(([label, href]) => `<a class="roadmap-assistant-link" href="${href}">${label}</a>`).join('')}</div>`;
+  }
+
+  function respond(question){
+    const ctx = contextKey();
+    const result = globalAnswer(question, ctx);
+    const response = document.getElementById('roadmapAssistantResponse');
+    if(response){
+      response.innerHTML = `<p>${result.text}</p>${renderLinks(result.links)}`;
+    }
+  }
+
+  function install(){
+    if(document.getElementById('roadmapAssistantLauncher')) return;
+    const ctx = contextKey();
+    const page = pages[ctx] || pages.home;
+    const launcher = document.createElement('button');
+    launcher.id = 'roadmapAssistantLauncher';
+    launcher.className = 'roadmap-assistant-launcher';
+    launcher.type = 'button';
+    launcher.setAttribute('aria-expanded', 'false');
+    launcher.setAttribute('aria-controls', 'roadmapAssistantPanel');
+    launcher.innerHTML = '<span class="roadmap-assistant-dot" aria-hidden="true"></span><span>Guide</span>';
+
+    const panel = document.createElement('aside');
+    panel.id = 'roadmapAssistantPanel';
+    panel.className = 'roadmap-assistant-panel';
+    panel.setAttribute('aria-label', 'ROADMAP navigation assistant');
+    panel.innerHTML = `
+      <div class="roadmap-assistant-header">
+        <div>
+          <h2 class="roadmap-assistant-title">ROADMAP guide</h2>
+          <p class="roadmap-assistant-subtitle">Navigation help for ${page.label}. Ask where to go next.</p>
+        </div>
+        <button class="roadmap-assistant-close" type="button" aria-label="Close ROADMAP guide">×</button>
+      </div>
+      <div class="roadmap-assistant-body">
+        <div class="roadmap-assistant-search">
+          <label for="roadmapAssistantInput">What are you trying to do?</label>
+          <div class="roadmap-assistant-search-row">
+            <input id="roadmapAssistantInput" type="text" placeholder="e.g., submit neural hypothesis" autocomplete="off" />
+            <button id="roadmapAssistantAsk" type="button">Ask</button>
+          </div>
+        </div>
+        <div class="roadmap-assistant-chips" aria-label="Suggested questions">
+          ${page.quick.map(q => `<button class="roadmap-assistant-chip" type="button" data-question="${q.replace(/"/g, '&quot;')}">${q}</button>`).join('')}
+        </div>
+        <div id="roadmapAssistantResponse" class="roadmap-assistant-response" aria-live="polite"></div>
+      </div>
+      <div class="roadmap-assistant-footer">This is a static navigation assistant for the ROADMAP prototype. It does not provide medical advice and can later be connected to a secure chatbot backend.</div>
+    `;
+
+    document.body.appendChild(launcher);
+    document.body.appendChild(panel);
+
+    const close = panel.querySelector('.roadmap-assistant-close');
+    const input = panel.querySelector('#roadmapAssistantInput');
+    const ask = panel.querySelector('#roadmapAssistantAsk');
+    function openPanel(){ panel.classList.add('open'); launcher.setAttribute('aria-expanded', 'true'); setTimeout(()=>input.focus(), 50); }
+    function closePanel(){ panel.classList.remove('open'); launcher.setAttribute('aria-expanded', 'false'); launcher.focus(); }
+    launcher.addEventListener('click', () => panel.classList.contains('open') ? closePanel() : openPanel());
+    close.addEventListener('click', closePanel);
+    ask.addEventListener('click', () => respond(input.value));
+    input.addEventListener('keydown', e => { if(e.key === 'Enter') respond(input.value); if(e.key === 'Escape') closePanel(); });
+    panel.querySelectorAll('.roadmap-assistant-chip').forEach(btn => btn.addEventListener('click', () => { input.value = btn.dataset.question; respond(btn.dataset.question); }));
+    document.addEventListener('keydown', e => { if(e.key === 'Escape' && panel.classList.contains('open')) closePanel(); });
+    respond('');
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
+  else install();
+})();
