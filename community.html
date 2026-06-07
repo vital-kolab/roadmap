@@ -12,17 +12,12 @@
 <header class="site-header">
   <div class="nav-wrap">
     <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="clinicians.html">Clinicians</a>
-      <a href="human-researchers.html">Human researchers</a>
-      <a href="animal-models.html">Model developers</a>
-      <a href="community.html">Community</a>
-      <a href="features.html">Platform</a>
-      <a href="submissions.html">Submit</a>
-      <a href="backend-architecture.html">Architecture</a>
-      <a href="simulation.html">Simulation</a>
-      <a href="tasks.html">Demo</a>
+    <nav class="nav portal-nav" aria-label="Community portal navigation">
+      <a href="index.html">← Home</a>
+      <a href="#ask">Ask a question</a>
+      <a href="#questions">What you can ask</a>
+      <a href="#feedback-form">Feedback form</a>
+      <a href="#use-of-feedback">How feedback is used</a>
     </nav>
   </div>
 </header>
@@ -32,23 +27,56 @@
   <span class="eyebrow">Community portal</span>
   <h1>Ask questions, request explanations, and shape what the platform pays attention to.</h1>
   <p class="lede">This portal is for autistic people, families, advocates, educators, and community partners who want to understand ROADMAP, comment on research priorities, or ask for clearer explanations of autism research claims.</p>
-  <div class="actions"><a class="button primary" href="#feedback-form">Send feedback</a><a class="button secondary" href="#questions">Ask a question</a></div>
+  <div class="actions"><a class="button primary" href="#ask-roadmap">Ask ROADMAP</a><a class="button secondary" href="#feedback-form">Send feedback</a></div>
 </div>
+
+<section id="ask-roadmap">
+  <div class="section-intro"><div class="kicker">Ask a question</div><h2>A public chatbot needs a backend, but GitHub Pages can host the interface.</h2><p class="lede">GitHub Pages can display a chat interface, but a real AI assistant should call a secure API so no private API key is exposed in the browser. This prototype shows the front-end experience and records the type of question ROADMAP should route to the team.</p></div>
+  <div class="chat-layout">
+    <div class="chat-card" aria-label="ROADMAP assistant prototype">
+      <div class="chat-header"><div><strong>ROADMAP Assistant</strong><span>Prototype intake interface</span></div><span class="chat-status">static demo</span></div>
+      <div class="chat-log" id="roadmapChatLog" aria-live="polite">
+        <div class="chat-message bot">Hi — I can help explain ROADMAP, route a question, or suggest which portal to use. This static demo does not send your message anywhere.</div>
+      </div>
+      <div class="chat-input-row">
+        <input id="roadmapChatInput" type="text" placeholder="Ask about a dataset, hypothesis, benchmark, or research claim" />
+        <button class="button primary" type="button" onclick="sendRoadmapChat()">Ask</button>
+      </div>
+      <div class="quick-prompts" aria-label="Suggested questions">
+        <button type="button" onclick="seedRoadmapChat('What does ROADMAP do?')">What does ROADMAP do?</button>
+        <button type="button" onclick="seedRoadmapChat('Can I ask for a plain-language explanation?')">Plain-language explanation</button>
+        <button type="button" onclick="seedRoadmapChat('How are community questions used?')">How is feedback used?</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Production chatbot recommendation</h3>
+      <p>Use GitHub Pages for the chat UI only. The actual assistant should live behind a small ROADMAP API that handles safety instructions, logging consent, rate limits, and routing to the correct knowledge base.</p>
+      <ul>
+        <li><strong>Static option:</strong> FAQ / rule-based assistant only.</li>
+        <li><strong>Production option:</strong> GitHub Pages chat widget → ROADMAP API → approved LLM / retrieval system.</li>
+        <li><strong>Safer intake option:</strong> chat UI generates a structured question that a ROADMAP team member reviews.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="grid grid-3">
-    <div class="card"><h3>Request a plain-language explanation</h3><p>Ask ROADMAP to explain a model, dataset, task, or research claim without unnecessary technical language.</p></div>
+    <div class="card"><h3>Request a plain-language explanation</h3><p>Ask ROADMAP to explain a neural hypothesis, dataset, task, benchmark, or research claim without unnecessary technical language.</p></div>
     <div class="card"><h3>Comment on priorities</h3><p>Tell the platform which research questions feel useful, irrelevant, concerning, or missing.</p></div>
     <div class="card"><h3>Flag unclear or harmful wording</h3><p>Identify language that feels inaccurate, stigmatizing, confusing, or disconnected from lived experience.</p></div>
   </div>
 </section>
+
 <section id="questions">
   <div class="section-intro"><div class="kicker">What you can ask</div><h2>Community questions become part of the research translation record.</h2><p class="lede">Questions help identify where a scientific claim needs a clearer explanation, more evidence, or a stronger statement of limits.</p></div>
   <div class="principle-list">
-    <div class="principle"><div class="num">1</div><div><strong>What does this research mean?</strong><p>Ask for a plain-language explanation of a model, task, dataset, or reported finding.</p></div></div>
+    <div class="principle"><div class="num">1</div><div><strong>What does this research mean?</strong><p>Ask for a plain-language explanation of a neural hypothesis, model simulation, task, dataset, or reported finding.</p></div></div>
     <div class="principle"><div class="num">2</div><div><strong>Who could this help?</strong><p>Ask how a finding might connect to clinical research, supports, education, or product development.</p></div></div>
-    <div class="principle"><div class="num">3</div><div><strong>What evidence is missing?</strong><p>Ask whether a claim has been tested in humans, animal models, clinical settings, or only simulations.</p></div></div>
+    <div class="principle"><div class="num">3</div><div><strong>What evidence is missing?</strong><p>Ask whether a claim has been tested in humans, animal models, clinical settings, simulations, or only one dataset.</p></div></div>
   </div>
 </section>
+
 <section id="feedback-form">
   <div class="section-intro"><div class="kicker">Feedback intake</div><h2>Community feedback form</h2><p class="lede">This prototype form shows the information ROADMAP will collect when community members ask a question or respond to a research claim.</p></div>
   <form class="form-card">
@@ -62,17 +90,12 @@
     <button class="button primary" type="button">Preview submission</button>
   </form>
 </section>
-<section><div class="callout"><h2>What ROADMAP will do with feedback</h2><p>Community feedback will be used to improve explanations, identify research priorities, revise unclear language, and flag claims that need more evidence before they are communicated outside the research setting.</p></div></section>
+
+<section id="use-of-feedback"><div class="callout"><h2>What ROADMAP will do with feedback</h2><p>Community feedback will be used to improve explanations, identify research priorities, revise unclear language, and flag claims that need more evidence before they are communicated outside the research setting.</p></div></section>
 
 </main>
 <footer class="footer">
-  <div class="footer-inner">
-    <div>
-      <strong>ROADMAP</strong><br>
-      <span class="note">A human-centered platform for organizing autism research evidence, computational models, datasets, and community feedback.</span>
-    </div>
-    <div class="badges"><span class="badge">Model submissions</span><span class="badge">Data submissions</span><span class="badge">Community feedback</span></div>
-  </div>
+  <div class="footer-inner"><div><strong>ROADMAP</strong><br><span class="note">A human-centered platform for organizing autism research evidence, neural hypotheses, datasets, and community feedback.</span></div><div class="badges"><span class="badge">Community questions</span><span class="badge">Plain-language explanations</span><span class="badge">Feedback routing</span></div></div>
 </footer>
 <script src="script.js"></script>
 </body>

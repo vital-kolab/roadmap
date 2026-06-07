@@ -9,7 +9,8 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="clinicians.html">Clinicians</a><a href="human-researchers.html">Human researchers</a><a href="animal-models.html">Model developers</a><a href="community.html">Community</a><a href="features.html">Platform</a><a href="submissions.html">Submit</a><a href="backend-architecture.html">Architecture</a><a href="simulation.html">Simulation</a><a href="tasks.html">Demo</a></nav></div></header>
+<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="clinicians.html">Clinicians</a><a href="human-researchers.html">Human researchers</a><a href="animal-models.html">Neural hypotheses</a><a href="community.html">Community</a><a href="features.html">Platform</a><a href="benchmark.html">Benchmarks</a>
+      <a href="playground.html">Playground</a><a href="submissions.html">Submit</a><a href="backend-architecture.html">Architecture</a><a href="simulation.html">Simulation</a><a href="tasks.html">Demo</a></nav></div></header>
 <main id="main">
 
 <div class="page-hero">
@@ -39,7 +40,7 @@
 <section>
   <div class="section-intro"><div class="kicker">Layers</div><h2>Build it in separable layers.</h2></div>
   <div class="arch-layer"><div class="layer-name">1. Public front end</div><div><p>GitHub Pages can host the landing page, audience portals, and submission UI. Forms call the backend API rather than trying to run compute directly.</p><ul><li>Static HTML/CSS/JS</li><li>Accessible, role-specific pages</li><li>Submission previews and job-status cards</li></ul></div></div>
-  <div class="arch-layer"><div class="layer-name">2. API gateway</div><div><p>A FastAPI service receives submissions, validates JSON schemas, handles authentication, and creates durable records.</p><ul><li><code>/api/models</code></li><li><code>/api/datasets</code></li><li><code>/api/jobs</code></li><li><code>/api/jobs/{id}/status</code></li></ul></div></div>
+  <div class="arch-layer"><div class="layer-name">2. API gateway</div><div><p>A FastAPI service receives submissions, validates JSON schemas, handles authentication, and creates durable records.</p><ul><li><code>/api/neural-hypotheses</code></li><li><code>/api/datasets</code></li><li><code>/api/jobs</code></li><li><code>/api/jobs/{id}/status</code></li></ul></div></div>
   <div class="arch-layer"><div class="layer-name">3. Registry database</div><div><p>PostgreSQL stores model metadata, dataset metadata, job manifests, permissions, benchmark selections, and audit logs.</p></div></div>
   <div class="arch-layer"><div class="layer-name">4. Compute bridge</div><div><p>A controlled dispatcher converts validated simulation requests into SLURM jobs. The Alliance documentation identifies Slurm as the scheduler on its clusters, and jobs are submitted with account/resource options through commands such as <code>sbatch</code>.</p></div></div>
   <div class="arch-layer"><div class="layer-name">5. Container runner</div><div><p>Each model run should use a pinned Apptainer/Singularity image or equivalent reproducible environment. That keeps user-submitted code away from the web server and makes runs auditable.</p></div></div>

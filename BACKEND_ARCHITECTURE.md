@@ -1,7 +1,7 @@
 # ROADMAP Backend Architecture Plan
 
 ## Goal
-Keep the ROADMAP public website polished and static, while routing model submissions, dataset submissions, and simulation requests through a secure backend that can dispatch reproducible jobs to lab or national compute infrastructure.
+Keep the ROADMAP public website polished and static, while routing neural hypothesis submissions, dataset submissions, and simulation requests through a secure backend that can dispatch reproducible jobs to lab or national compute infrastructure.
 
 ## Recommended stack
 
@@ -72,3 +72,19 @@ Keep the ROADMAP public website polished and static, while routing model submiss
 5. Automated SLURM dispatch and status polling.
 6. Benchmark runner and report generator.
 7. Public/private dashboard access.
+
+
+## Community chatbot on GitHub Pages
+
+GitHub Pages should host only the chat front end. A production ROADMAP assistant should call a secure backend API that stores consented questions, applies safety instructions, retrieves approved ROADMAP evidence records, and routes unresolved questions to the team. Do not expose LLM API keys directly in JavaScript.
+
+Recommended production path:
+1. GitHub Pages chat widget.
+2. ROADMAP FastAPI endpoint: `/api/community/questions`.
+3. Retrieval over approved evidence cards, dataset metadata, benchmark summaries, and glossary entries.
+4. Human review queue for uncertain or sensitive answers.
+5. Optional email/dashboard response to the community member.
+
+## Benchmark dashboard
+
+The benchmark dashboard should be the central product surface for the platform. It should join four database tables: datasets, neural hypotheses, simulation jobs, and benchmark results. Each row should link back to source evidence, access level, validation status, and translation-readiness labels. Neurotypical model simulation results should be imported from the Brain-Score collaboration workflow when available rather than duplicated inside ROADMAP.

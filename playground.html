@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROADMAP | Benchmark Playground</title>
+  <meta name="description" content="Explore ROADMAP benchmark datasets, original papers, and benchmark coverage across neural hypotheses and model simulations." />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
+    <nav class="nav" aria-label="Benchmark playground navigation">
+      <a href="index.html">← Home</a>
+      <a href="benchmark.html">Dashboard</a>
+      <a href="#registry">Benchmark registry</a>
+      <a href="#selection">Select benchmarks</a>
+      <a href="#preview">Preview results</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="page-hero">
+  <span class="eyebrow">Benchmark playground</span>
+  <h1>Explore submitted benchmarks, source papers, and model-evidence coverage.</h1>
+  <p class="lede">The playground is not just a demo selector. It is the public registry of benchmark datasets submitted to ROADMAP, where each benchmark links back to its source paper, dataset metadata, task family, and current benchmarking status.</p>
+  <div class="actions"><a class="button primary" href="#selection">Select benchmarks</a><a class="button secondary" href="benchmark.html">Open dashboard</a><a class="button secondary" href="submissions.html#data">Submit a benchmark dataset</a></div>
+</div>
+
+<section id="registry">
+  <div class="section-intro">
+    <div class="kicker">Submitted benchmark registry</div>
+    <h2>Benchmarks should be traceable to papers, datasets, tasks, and evidence claims.</h2>
+    <p class="lede">Each benchmark card links the task to its original paper or dataset record. ROADMAP can then show whether a neural hypothesis or simulation has been tested against it.</p>
+  </div>
+  <div class="benchmark-category-grid">
+    <div class="benchmark-family-card">
+      <div class="family-head"><span>01</span><h3>Visual discrimination</h3></div>
+      <p>Image- or video-based two-alternative discrimination, object categorization, face expression discrimination, and visual task difficulty.</p>
+      <a href="#selection">View benchmarks</a>
+    </div>
+    <div class="benchmark-family-card">
+      <div class="family-head"><span>02</span><h3>Ratings and judgments</h3></div>
+      <p>Behavioral ratings, memorability, similarity, sensory comfort, preference, or difficulty measures tied to stimuli and constructs.</p>
+      <a href="#selection">View benchmarks</a>
+    </div>
+    <div class="benchmark-family-card">
+      <div class="family-head"><span>03</span><h3>Odd-one-out / similarity</h3></div>
+      <p>Triplet tasks, representational geometry, perceptual organization, and category-structure benchmarks.</p>
+      <a href="#selection">View benchmarks</a>
+    </div>
+    <div class="benchmark-family-card">
+      <div class="family-head"><span>04</span><h3>Learning and transfer</h3></div>
+      <p>Category learning, cross-modal learning, generalization, transfer to new exemplars, and trained-vs-untrained comparisons.</p>
+      <a href="#selection">View benchmarks</a>
+    </div>
+    <div class="benchmark-family-card">
+      <div class="family-head"><span>05</span><h3>Neural alignment</h3></div>
+      <p>fMRI, electrophysiology, fUS, representational similarity, decoding, reliability, and cross-species neural measures.</p>
+      <a href="#selection">View benchmarks</a>
+    </div>
+    <div class="benchmark-family-card community-family">
+      <div class="family-head"><span>06</span><h3>Community review</h3></div>
+      <p>Plain-language interpretation, acceptability, relevance, concerns, priority feedback, and wording review.</p>
+      <a href="#selection">View benchmarks</a>
+    </div>
+  </div>
+</section>
+
+<section id="selection">
+  <div class="section-intro">
+    <div class="kicker">Benchmark selection</div>
+    <h2>Select benchmarks to test a neural hypothesis or simulation request.</h2>
+    <p class="lede">This follows the idea of the earlier selector and results pages: choose benchmark families, preserve links to original papers, then generate a benchmark coverage preview.</p>
+  </div>
+  <div id="benchmarkGallery" class="benchmark-gallery-pro"></div>
+  <div class="actions"><button class="button primary" type="button" onclick="renderBenchmarkPlaygroundResults()">Preview selected benchmarks</button><button class="button secondary" type="button" onclick="clearBenchmarkPlaygroundSelection()">Clear selection</button></div>
+</section>
+
+<section id="preview">
+  <div class="section-intro">
+    <div class="kicker">Results preview</div>
+    <h2>Benchmark coverage preview</h2>
+    <p class="lede">In production, this area would pull completed Brain-Score simulations, ROADMAP hypothesis scores, dataset quality flags, and community review status from the database.</p>
+  </div>
+  <div class="grid grid-2">
+    <div class="card"><h3>Selected benchmark summary</h3><div id="selectedBenchmarkSummary" class="benchmark-summary-box"><p class="note">Select one or more benchmarks above and click preview.</p></div></div>
+    <div class="card"><h3>Coverage chart</h3><div id="benchmarkCoverageChart" style="height:320px;"></div></div>
+  </div>
+</section>
+
+</main>
+<footer class="footer"><div class="footer-inner"><div><strong>ROADMAP</strong><br><span class="note">Benchmark playground for source-linked datasets, task families, and model-evidence coverage.</span></div><div class="badges"><span class="badge">Source papers</span><span class="badge">Benchmark selection</span><span class="badge">Coverage preview</span></div></div></footer>
+<script src="script.js"></script>
+</body>
+</html>

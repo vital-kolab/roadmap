@@ -3,55 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ROADMAP | Model Developers</title>
-  <meta name="description" content="Portal for computational model, animal-model assay, and benchmark submissions." />
+  <title>ROADMAP | Neural Hypothesis Portal</title>
+  <meta name="description" content="Submit neural hypotheses from animal-model studies for translational autism benchmarking." />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="">
+<body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="nav-wrap">
     <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="clinicians.html">Clinicians</a>
-      <a href="human-researchers.html">Human researchers</a>
-      <a href="animal-models.html">Model developers</a>
-      <a href="community.html">Community</a>
-      <a href="features.html">Platform</a>
-      <a href="submissions.html">Submit</a>
-      <a href="backend-architecture.html">Architecture</a>
-      <a href="simulation.html">Simulation</a>
-      <a href="tasks.html">Demo</a>
+    <nav class="nav portal-nav" aria-label="Animal-model hypothesis portal navigation">
+      <a href="index.html">← Home</a>
+      <a href="#hypothesis">Neural hypothesis</a>
+      <a href="#benchmarking">Benchmarking</a>
+      <a href="#brain-score">Brain-Score lane</a>
+      <a href="#limits">Scope and limits</a>
     </nav>
   </div>
 </header>
 <main id="main">
 
-<div class="page-hero audience-hero"><span class="eyebrow">Model developer portal</span><h1>Submit computational models, animal-model assays, and mechanistic predictions.</h1><p class="lede">This portal is for teams developing artificial neural networks, formal task models, simulation tools, and animal-model assays. ROADMAP helps developers state what their model is meant to explain, which data it matches, which predictions it makes, and where translation to human research is uncertain.</p><div class="actions"><a class="button primary" href="#model-submit">Submit a model</a><a class="button secondary" href="#benchmarking">Benchmarking criteria</a></div></div>
-<section><div class="grid grid-3">
-  <div class="card"><div class="icon gold">MD</div><h3>Model registry</h3><p>Register model architecture, training objective, parameters, datasets used, available code, and intended scope.</p></div>
-  <div class="card"><div class="icon">PR</div><h3>Prediction records</h3><p>Submit expected patterns across behavior, neural data, animal assays, or clinical research measures.</p></div>
-  <div class="card"><div class="icon green">TR</div><h3>Translation readiness</h3><p>Separate mechanistic plausibility, benchmark performance, human validation, and deployment readiness.</p></div>
-</div></section>
-<section id="benchmarking"><div class="section-intro"><div class="kicker">Benchmarking criteria</div><h2>Every model submission is evaluated by what it claims to explain.</h2></div><div class="principle-list">
-  <div class="principle"><div class="num">1</div><div><strong>Scope</strong><p>What construct, task, behavior, or neural process is the model designed to address?</p></div></div>
-  <div class="principle"><div class="num">2</div><div><strong>Evidence</strong><p>Which human, animal, neural, behavioral, clinical, or synthetic datasets were used to test it?</p></div></div>
-  <div class="principle"><div class="num">3</div><div><strong>Limits</strong><p>Where does the model fail, and which claims should not be made from its current evidence?</p></div></div>
-  <div class="principle"><div class="num">4</div><div><strong>Next test</strong><p>What experiment, dataset, or community question would most improve confidence in the model?</p></div></div>
-</div></section>
-<section id="model-submit"><div class="section-intro"><div class="kicker">Prototype intake</div><h2>Submit a model or assay</h2></div><form class="form-card"><label>Submission type</label><select><option>Artificial neural network</option><option>Formal computational model</option><option>Animal-model assay</option><option>Simulation result</option><option>Benchmark result</option></select><label>Model or assay name</label><input placeholder="Enter name"/><label>Claim being tested</label><textarea rows="5" placeholder="Describe the model claim, predicted pattern, and intended comparison across datasets or species."></textarea><label>Code or documentation link</label><input placeholder="GitHub, OSF, DOI, or project page"/><p class="note">Prototype only: connect this form to a repository, review workflow, and benchmark runner before public launch.</p><button class="button primary" type="button">Preview model submission</button></form></section>
-<section><div class="callout"><h2>Model submissions do not stand alone.</h2><p>ROADMAP treats models as testable hypotheses that must be linked to datasets, evidence cards, and clearly stated limits before they inform clinical research or product development.</p></div></section>
+<div class="page-hero audience-hero">
+  <span class="eyebrow">Animal-model hypothesis portal</span>
+  <h1>Submit neural hypotheses emerging from animal-model studies.</h1>
+  <p class="lede">This portal is for animal-model researchers whose experiments reveal candidate neural mechanisms for autistic behavior, sensory processing, learning, social communication, or intervention response. ROADMAP treats these findings as testable hypotheses that can be linked to human datasets, simulations, and clinical research questions.</p>
+  <div class="actions"><a class="button primary" href="submissions.html#model">Submit a neural hypothesis</a><a class="button secondary" href="benchmark.html">View benchmark dashboard</a></div>
+</div>
 
+<section id="hypothesis">
+  <div class="section-intro"><div class="kicker">What gets submitted</div><h2>Not “a model” alone — a hypothesis with evidence, scope, and limits.</h2></div>
+  <div class="grid grid-3">
+    <div class="card"><div class="icon gold">01</div><h3>Animal-model finding</h3><p>Describe the assay, species, manipulation, behavioral phenotype, and neural measurement that motivated the hypothesis.</p></div>
+    <div class="card"><div class="icon">02</div><h3>Candidate mechanism</h3><p>State the neural mechanism: for example sensory reliability, E/I balance, feedback modulation, learning dynamics, or circuit-level variability.</p></div>
+    <div class="card"><div class="icon green">03</div><h3>Translational prediction</h3><p>Specify what should be observable in human behavior, neuroimaging, clinical tasks, or simulations if the hypothesis is useful.</p></div>
+  </div>
+</section>
+
+<section id="benchmarking"><div class="section-intro"><div class="kicker">Benchmarking criteria</div><h2>Every hypothesis is evaluated by what it predicts across evidence layers.</h2></div><div class="principle-list">
+  <div class="principle"><div class="num">1</div><div><strong>Evidence source</strong><p>Which animal-model study, assay, or manipulation supports the neural hypothesis?</p></div></div>
+  <div class="principle"><div class="num">2</div><div><strong>Cross-species prediction</strong><p>What measurable signature should appear in human datasets, neurotypical simulations, or clinical research tasks?</p></div></div>
+  <div class="principle"><div class="num">3</div><div><strong>Limits and risks</strong><p>What does the hypothesis not claim? Which species, behaviors, or contexts should not be overinterpreted?</p></div></div>
+</div></section>
+
+<section id="brain-score"><div class="callout"><h2>Neurotypical model simulation is handled through Brain-Score collaboration.</h2><p>ROADMAP will not duplicate Brain-Score-style benchmarking infrastructure. Instead, neurotypical model simulations can be routed through a Brain-Score collaboration workflow, while ROADMAP focuses on autism-relevant hypotheses, datasets, cross-species evidence links, and translation-readiness summaries.</p></div></section>
+
+<section id="limits">
+  <div class="section-intro"><div class="kicker">Scope and limits</div><h2>Every submitted hypothesis should include what it does not claim.</h2></div>
+  <div class="grid grid-3">
+    <div class="card"><h3>Species limits</h3><p>Which animal-model findings should not be directly generalized to people without additional evidence?</p></div>
+    <div class="card"><h3>Behavioral limits</h3><p>Which autistic behaviors, traits, or experiences are outside the scope of this hypothesis?</p></div>
+    <div class="card"><h3>Translation limits</h3><p>What additional human data, simulations, or clinical studies are needed before the hypothesis is used outside research?</p></div>
+  </div>
+</section>
 </main>
 <footer class="footer">
-  <div class="footer-inner">
-    <div>
-      <strong>ROADMAP</strong><br>
-      <span class="note">A human-centered platform for organizing autism research evidence, computational models, datasets, and community feedback.</span>
-    </div>
-    <div class="badges"><span class="badge">Model submissions</span><span class="badge">Data submissions</span><span class="badge">Community feedback</span></div>
-  </div>
+  <div class="footer-inner"><div><strong>ROADMAP</strong><br><span class="note">A human-centered platform for organizing autism research evidence, neural hypotheses, datasets, simulations, and community feedback.</span></div><div class="badges"><span class="badge">Neural hypothesis submissions</span><span class="badge">Data submissions</span><span class="badge">Benchmark dashboard</span></div></div>
 </footer>
 <script src="script.js"></script>
 </body>

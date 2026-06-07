@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ROADMAP | Benchmarks</title>
-  <meta name="description" content="ROADMAP: a unified human-technology platform for translational autism research." />
+  <title>ROADMAP | Benchmark Dashboard</title>
+  <meta name="description" content="ROADMAP benchmark dashboard for datasets, neural hypotheses, model simulations, and translation readiness." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -12,41 +12,101 @@
 <header class="site-header">
   <div class="nav-wrap">
     <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="clinicians.html">Clinicians</a>
-      <a href="human-researchers.html">Human researchers</a>
-      <a href="animal-models.html">Model developers</a>
-      <a href="community.html">Community</a>
-      <a href="features.html">Platform</a>
-      <a href="submissions.html">Submit</a>
-      <a href="backend-architecture.html">Architecture</a>
-      <a href="simulation.html">Simulation</a>
-      <a href="tasks.html">Demo</a>
+    <nav class="nav" aria-label="Benchmark dashboard navigation">
+      <a href="index.html">← Home</a>
+      <a href="playground.html">Playground</a>
+      <a href="#datasets">Datasets</a>
+      <a href="#papers">Papers</a>
+      <a href="#matrix">Matrix</a>
+      <a href="#cards">Evidence cards</a>
     </nav>
   </div>
 </header>
 <main id="main">
 
-<div class="page-hero"><span class="eyebrow">Benchmarks</span><h1>Select benchmark families that connect model predictions to real data.</h1><p class="lede">ROADMAP benchmarking is intended to compare candidate models against curated behavioral, neural, and translational datasets, including standardized AI evaluation through partner infrastructure.</p></div>
+<div class="page-hero dashboard-hero">
+  <span class="eyebrow">Benchmark dashboard</span>
+  <h1>Track datasets, neural hypotheses, simulations, and benchmark results in one place.</h1>
+  <p class="lede">This dashboard is the central ROADMAP view: which datasets have been contributed, which neural hypotheses they test, which neurotypical or perturbed simulations have been run, and what is ready for translation.</p>
+  <div class="actions"><a class="button primary" href="playground.html">Open benchmark playground</a><a class="button secondary" href="submissions.html#data">Submit dataset</a><a class="button secondary" href="submissions.html#model">Submit neural hypothesis</a><a class="button secondary" href="submissions.html#job">Request benchmark job</a></div>
+</div>
+
 <section>
-  <div class="grid grid-3" id="benchmarkCards"></div>
-  <div class="actions"><button class="button primary" onclick="submitBenchmarks()">Save selected benchmarks</button><a class="button secondary" href="results.html">View dashboard</a></div>
+  <div class="dashboard-metrics-grid">
+    <div class="dashboard-metric-card"><span>Datasets registered</span><strong>12</strong><p>Human, macaque, rodent, task, and protocol records.</p></div>
+    <div class="dashboard-metric-card"><span>Neural hypotheses</span><strong>8</strong><p>Animal-model findings mapped to candidate mechanisms.</p></div>
+    <div class="dashboard-metric-card"><span>Benchmark jobs</span><strong>34</strong><p>Completed, running, or queued simulation comparisons.</p></div>
+    <div class="dashboard-metric-card"><span>Translation-ready cards</span><strong>5</strong><p>Evidence summaries with limits and next validation steps.</p></div>
+  </div>
+  <p class="note dashboard-note">Prototype values shown for interface design. In production, these numbers would come from the ROADMAP database and benchmark runner.</p>
 </section>
+
+<section id="datasets">
+  <div class="section-intro"><div class="kicker">Dataset registry</div><h2>Datasets available for benchmarking</h2><p class="lede">Each dataset should be linked to metadata, access conditions, measures, species or participant group, and benchmark-compatible tasks.</p></div>
+  <div class="table-wrap">
+    <table class="table dashboard-table">
+      <thead><tr><th>Dataset</th><th>Source</th><th>Modality</th><th>Task / construct</th><th>Status</th><th>Benchmark use</th></tr></thead>
+      <tbody>
+        <tr><td>Audio-visual object learning cohort</td><td>Human participants</td><td>Behavior + fMRI</td><td>Audio, visual, congruent/incongruent AV object categories</td><td><span class="status-pill ready">metadata ready</span></td><td>Cross-modal decoding; visual vs AV modulation</td></tr>
+        <tr><td>Macaque audio-to-visual category mapping</td><td>Rhesus macaque</td><td>Behavior</td><td>Learned auditory category-to-visual object mapping</td><td><span class="status-pill review">under review</span></td><td>Cross-species generalization; learned category transfer</td></tr>
+        <tr><td>Face expression discrimination</td><td>Human + macaque</td><td>Behavior + IT neural data</td><td>Identity, expression, intensity, behavioral image difficulty</td><td><span class="status-pill ready">benchmark-ready</span></td><td>Model-behavior-neural alignment</td></tr>
+        <tr><td>Sensory reliability assay package</td><td>Animal model</td><td>Assay + neural measures</td><td>Trial-to-trial variability, sensory noise, reliability</td><td><span class="status-pill draft">draft</span></td><td>Test sensory-noise hypotheses against human/animal signatures</td></tr>
+        <tr><td>Community priority questions</td><td>Community feedback</td><td>Structured text</td><td>Explanatory needs, concerns, priorities</td><td><span class="status-pill ready">active</span></td><td>Language review; relevance scoring; priority mapping</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<section id="papers">
+  <div class="section-intro"><div class="kicker">Source-linked benchmarks</div><h2>Original papers and benchmark records</h2><p class="lede">Every benchmark should preserve a link to the study or dataset that created it, rather than appearing as an anonymous score.</p></div>
+  <div class="table-wrap">
+    <table class="table dashboard-table">
+      <thead><tr><th>Benchmark</th><th>Family</th><th>Evidence source</th><th>ROADMAP use</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>Face expression difficulty</td><td>Visual discrimination</td><td>Human + macaque behavior; IT neural recordings</td><td>Model-behavior-neural alignment; expression intensity signatures</td><td><a href="https://doi.org/10.1101/2024.01.01.000000" target="_blank" rel="noopener">source record / DOI placeholder</a></td></tr>
+        <tr><td>Audio-visual object category learning</td><td>Learning and transfer</td><td>Macaque audio-to-visual mapping; human AV fMRI</td><td>Cross-modal learning and generalization benchmark</td><td><a href="https://doi.org/10.1101/2024.01.01.000001" target="_blank" rel="noopener">source record / DOI placeholder</a></td></tr>
+        <tr><td>Visual search / category variability</td><td>Visual discrimination</td><td>Human visual search and object-category variability</td><td>Test whether neural hypotheses predict broad vs narrow templates</td><td><a href="https://www.sciencedirect.com/science/article/abs/pii/S0028393217301045" target="_blank" rel="noopener">example paper link</a></td></tr>
+        <tr><td>Sensory reliability assay</td><td>Neural alignment</td><td>Animal-model trial-to-trial variability and sensory reliability measures</td><td>Test sensory-noise and gain hypotheses across species</td><td><a href="https://doi.org/10.1101/2024.01.01.000002" target="_blank" rel="noopener">source record / DOI placeholder</a></td></tr>
+        <tr><td>Community relevance review</td><td>Community review</td><td>Structured community questions, language review, and priority feedback</td><td>Flag unclear, overreaching, or low-relevance claims before public communication</td><td><a href="community.html#feedback-form">ROADMAP feedback record</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="matrix">
+  <div class="section-intro"><div class="kicker">Benchmark matrix</div><h2>What has been tested against which evidence?</h2><p class="lede">ROADMAP should avoid a single leaderboard score. The dashboard reports where a hypothesis or simulation has evidence, where it fails, and what needs to be tested next.</p></div>
+  <div class="table-wrap">
+    <table class="table benchmark-matrix">
+      <thead><tr><th>Hypothesis / simulation</th><th>Animal-model evidence</th><th>Human behavioral data</th><th>Human neural data</th><th>Neurotypical simulation</th><th>Community review</th><th>Readiness</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Sensory noise / reliability hypothesis</strong><br><span>Animal-model variability finding</span></td><td class="cell-pass">linked</td><td class="cell-warn">partial</td><td class="cell-warn">pending</td><td class="cell-run">Brain-Score route</td><td class="cell-warn">needed</td><td><span class="readiness exploratory">exploratory</span></td></tr>
+        <tr><td><strong>Audio-visual category transfer hypothesis</strong><br><span>Macaque learning study</span></td><td class="cell-pass">linked</td><td class="cell-pass">linked</td><td class="cell-warn">early fMRI</td><td class="cell-run">queued</td><td class="cell-warn">needed</td><td><span class="readiness research">research-ready</span></td></tr>
+        <tr><td><strong>Expression-processing alignment hypothesis</strong><br><span>Face behavior + IT neural data</span></td><td class="cell-pass">linked</td><td class="cell-pass">linked</td><td class="cell-pass">linked</td><td class="cell-pass">completed</td><td class="cell-warn">language review</td><td><span class="readiness research">research-ready</span></td></tr>
+        <tr><td><strong>Top-down modulation hypothesis</strong><br><span>Feedback / recurrent processing prediction</span></td><td class="cell-warn">candidate</td><td class="cell-warn">pending</td><td class="cell-warn">pending</td><td class="cell-run">requested</td><td class="cell-warn">needed</td><td><span class="readiness exploratory">exploratory</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <section>
-  <div class="callout"><h2>Benchmark philosophy</h2><p>A model is useful only when it predicts held-out data, makes interpretable errors, and suggests the next experiment. ROADMAP therefore emphasizes transparent reporting over single leaderboard scores.</p></div>
+  <div class="grid grid-2">
+    <div class="card"><h2>Brain-Score collaboration lane</h2><p>Neurotypical model simulations should be routed through a Brain-Score collaboration workflow. ROADMAP should store the request, link the relevant datasets and hypothesis, and import the benchmark summary when the simulation is complete.</p><div class="badges"><span class="badge">Neurotypical baseline</span><span class="badge">Model simulation</span><span class="badge">Partner workflow</span></div></div>
+    <div class="card"><h2>ROADMAP-specific lane</h2><p>ROADMAP focuses on autism-relevant hypothesis organization: animal-model findings, human datasets, benchmark compatibility, evidence cards, limitations, and community-readable summaries.</p><div class="badges"><span class="badge">Neural hypotheses</span><span class="badge">Cross-species evidence</span><span class="badge">Translation readiness</span></div></div>
+  </div>
+</section>
+
+<section id="cards">
+  <div class="section-intro"><div class="kicker">Evidence cards</div><h2>Example benchmark cards</h2></div>
+  <div class="grid grid-3">
+    <div class="card evidence-card"><span class="status-pill ready">benchmark-ready</span><h3>Face expression alignment</h3><p>Human behavior, macaque behavior, IT neural data, and ANN alignment available. Needs final community-facing explanation review before public summary.</p></div>
+    <div class="card evidence-card"><span class="status-pill review">under review</span><h3>Audio-visual category transfer</h3><p>Behavioral evidence supports learned mapping. Human fMRI and simulation comparisons are being prepared for dashboard integration.</p></div>
+    <div class="card evidence-card"><span class="status-pill draft">draft</span><h3>Sensory reliability</h3><p>Animal-model hypothesis has candidate mechanisms but needs harmonized human task and neurotypical simulation baseline.</p></div>
+  </div>
 </section>
 
 </main>
-<footer class="footer">
-  <div class="footer-inner">
-    <div>
-      <strong>ROADMAP</strong><br>
-      <span class="note">Reliable Open-Access Digital solution to Manage Autistic Phenotype — a human-centered platform for translational autism science.</span>
-    </div>
-    <div class="badges"><span class="badge">Accessible design</span><span class="badge">Cross-species translation</span><span class="badge">Clinical research</span></div>
-  </div>
-</footer>
+<footer class="footer"><div class="footer-inner"><div><strong>ROADMAP</strong><br><span class="note">Benchmark dashboard for datasets, neural hypotheses, simulations, and translation-readiness records.</span></div><div class="badges"><span class="badge">Dataset registry</span><span class="badge">Hypothesis registry</span><span class="badge">Benchmark matrix</span></div></div></footer>
 <script src="script.js"></script>
 </body>
 </html>
