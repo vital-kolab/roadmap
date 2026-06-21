@@ -42,3 +42,7 @@ The `submissions.html` page now posts active ROADMAP submissions to Formspree:
 - Behavior submission: `https://formspree.io/f/mdarnjyp`
 
 The simulation job tab remains a static mock request until a ROADMAP backend/compute queue is connected.
+
+
+## Knowledge User Hub
+Added `knowledge-hub.html`, a page for translating benchmark-supported ROADMAP evidence into reviewed tools, explanations, evidence cards, task aids, and deployable prototypes.

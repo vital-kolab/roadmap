@@ -330,6 +330,7 @@ renderBenchmarkPlayground();
         ['Neural hypothesis portal', 'animal-models.html'],
         ['Community portal', 'community.html'],
         ['Benchmark dashboard', 'benchmark.html'],
+        ['Knowledge User Hub', 'knowledge-hub.html'],
         ['Benchmark playground', 'playground.html'],
         ['Submit to ROADMAP', 'submissions.html']
       ]
@@ -445,6 +446,11 @@ renderBenchmarkPlayground();
 
     if(/portal|where.*start|which/.test(query)){
       return answer('Choose a portal based on what you want to do: clinicians review evidence, human researchers submit data, animal-model researchers submit neural hypotheses, and community members ask questions or provide feedback.', pages.home.links.slice(0,4));
+    }
+    if(/tool|deploy|deployment|knowledge hub|knowledge user|use case|pilot|product/.test(query)){
+      return answer('The Knowledge User Hub explains how benchmark-supported ROADMAP evidence can become reviewed tools: plain-language explanations, evidence cards, task aids, or deployment prototypes for clinicians, researchers, community members, and product partners.', [
+        ['Knowledge User Hub', 'knowledge-hub.html'], ['Benchmark dashboard', 'benchmark.html'], ['Submit a use case', 'knowledge-hub.html#request'], ['Back to home', 'index.html']
+      ]);
     }
     if(/benchmark|dashboard|paper|source|dataset|registry/.test(query)){
       return answer('Use the Benchmark Dashboard to see submitted datasets, source-linked benchmark records, and which hypotheses or simulations have been benchmarked. Use the Benchmark Playground to select benchmark families and preview coverage.', [
