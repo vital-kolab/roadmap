@@ -14,75 +14,250 @@
     <a class="brand" href="index.html"><span class="logo">RM</span><span>ROADMAP</span></a>
     <nav class="nav" aria-label="Benchmark dashboard navigation">
       <a href="index.html">← Home</a>
-      <a href="playground.html">Playground</a>
-      <a href="#datasets">Datasets</a>
+      <a href="#domains">Domains</a>
+      <a href="#hypotheses">Hypotheses</a>
+      <a href="#registry">Registry</a>
       <a href="#papers">Papers</a>
       <a href="#matrix">Matrix</a>
-      <a href="#cards">Evidence cards</a>
     </nav>
   </div>
 </header>
 <main id="main">
 
-<div class="page-hero dashboard-hero">
-  <span class="eyebrow">Benchmark dashboard</span>
-  <h1>Track datasets, neural hypotheses, simulations, and benchmark results in one place.</h1>
-  <p class="lede">This dashboard is the central ROADMAP view: which datasets have been contributed, which neural hypotheses they test, which neurotypical or perturbed simulations have been run, and what is ready for translation.</p>
-  <div class="actions"><a class="button primary" href="playground.html">Open benchmark playground</a><a class="button secondary" href="submissions.html#data">Submit dataset</a><a class="button secondary" href="submissions.html#model">Submit neural hypothesis</a><a class="button secondary" href="submissions.html#job">Request benchmark job</a></div>
+<div class="page-hero dashboard-hero benchmark-master-hero">
+  <div class="benchmark-hero-grid">
+    <div>
+      <span class="eyebrow">Benchmark dashboard</span>
+      <h2>The central ROADMAP view for understanding what each neural hypothesis explains.</h2>
+      <p class="lede">This page brings together grouped behavioral domains, linked datasets, original papers, and cross-species benchmark summaries so visitors can quickly see which neural hypotheses are promising, where evidence is still weak, and what needs to happen next.</p>
+      <div class="actions">
+        <a class="button primary" href="playground.html">Open benchmark playground</a>
+        <a class="button secondary" href="submissions.html#data">Submit behavior data</a>
+        <a class="button secondary" href="submissions.html#model">Submit neural hypothesis</a>
+      </div>
+      <div class="hero-read-guide">
+        <div class="guide-chip"><strong>1</strong><span>Start with behavioral domains</span></div>
+        <div class="guide-chip"><strong>2</strong><span>Compare hypotheses across domains</span></div>
+        <div class="guide-chip"><strong>3</strong><span>Open source records and datasets</span></div>
+      </div>
+    </div>
+    <div class="hero-side-panel">
+      <div class="hero-side-card">
+        <span class="hero-side-kicker">At a glance</span>
+        <div class="hero-side-metrics">
+          <div><strong>12</strong><span>Datasets registered</span></div>
+          <div><strong>8</strong><span>Neural hypotheses</span></div>
+          <div><strong>34</strong><span>Benchmark jobs</span></div>
+          <div><strong>5</strong><span>Translation-ready summaries</span></div>
+        </div>
+        <div class="benchmark-health-card">
+          <div class="benchmark-health-labels"><span>Behavioral coverage</span><span>68%</span></div>
+          <div class="health-bar"><span style="width:68%"></span></div>
+          <div class="benchmark-health-labels"><span>Neural coverage</span><span>52%</span></div>
+          <div class="health-bar"><span style="width:52%"></span></div>
+          <div class="benchmark-health-labels"><span>Community-reviewed summaries</span><span>41%</span></div>
+          <div class="health-bar"><span style="width:41%"></span></div>
+        </div>
+      </div>
+      <p class="note dashboard-note">Prototype values are shown here for interface design. In production, these summaries would be populated by the ROADMAP benchmark registry and Brain-Score-linked simulation pipeline.</p>
+    </div>
+  </div>
 </div>
 
-<section>
-  <div class="dashboard-metrics-grid">
-    <div class="dashboard-metric-card"><span>Datasets registered</span><strong>12</strong><p>Human, macaque, rodent, task, and protocol records.</p></div>
-    <div class="dashboard-metric-card"><span>Neural hypotheses</span><strong>8</strong><p>Animal-model findings mapped to candidate mechanisms.</p></div>
-    <div class="dashboard-metric-card"><span>Benchmark jobs</span><strong>34</strong><p>Completed, running, or queued simulation comparisons.</p></div>
-    <div class="dashboard-metric-card"><span>Translation-ready cards</span><strong>5</strong><p>Evidence summaries with limits and next validation steps.</p></div>
+<section id="domains">
+  <div class="section-intro">
+    <div class="kicker">Grouped behavioral domains</div>
+    <h2>See the benchmark landscape by domain, not just by dataset.</h2>
+    <p class="lede">ROADMAP should help visitors understand the behavioral space at a glance: which domains are well represented, which hypotheses have traction, and where more human or cross-species work is needed.</p>
   </div>
-  <p class="note dashboard-note">Prototype values shown for interface design. In production, these numbers would come from the ROADMAP database and benchmark runner.</p>
+
+  <div class="domain-card-grid">
+    <article class="domain-card">
+      <div class="domain-card-top"><span class="domain-dot blue"></span><h3>Visual discrimination</h3><span class="domain-score good">strong</span></div>
+      <p>Object, face, and category judgments under variable viewing conditions.</p>
+      <div class="domain-meta"><span>Benchmarks: 4</span><span>Datasets: 3</span></div>
+      <div class="domain-bars">
+        <div class="domain-bar-row"><span>Expression alignment</span><div class="mini-bar"><span style="width:88%"></span></div><strong>0.88</strong></div>
+        <div class="domain-bar-row"><span>Sensory noise</span><div class="mini-bar"><span style="width:46%"></span></div><strong>0.46</strong></div>
+      </div>
+    </article>
+
+    <article class="domain-card">
+      <div class="domain-card-top"><span class="domain-dot purple"></span><h3>Learning & transfer</h3><span class="domain-score moderate">growing</span></div>
+      <p>Learning, generalization, transfer, and task performance after training.</p>
+      <div class="domain-meta"><span>Benchmarks: 3</span><span>Datasets: 2</span></div>
+      <div class="domain-bars">
+        <div class="domain-bar-row"><span>AV category transfer</span><div class="mini-bar"><span style="width:84%"></span></div><strong>0.84</strong></div>
+        <div class="domain-bar-row"><span>Top-down modulation</span><div class="mini-bar"><span style="width:58%"></span></div><strong>0.58</strong></div>
+      </div>
+    </article>
+
+    <article class="domain-card">
+      <div class="domain-card-top"><span class="domain-dot teal"></span><h3>Multisensory integration</h3><span class="domain-score moderate">active</span></div>
+      <p>Audio-visual congruency, cross-modal prediction, and integration effects.</p>
+      <div class="domain-meta"><span>Benchmarks: 2</span><span>Datasets: 2</span></div>
+      <div class="domain-bars">
+        <div class="domain-bar-row"><span>AV category transfer</span><div class="mini-bar"><span style="width:91%"></span></div><strong>0.91</strong></div>
+        <div class="domain-bar-row"><span>Top-down modulation</span><div class="mini-bar"><span style="width:49%"></span></div><strong>0.49</strong></div>
+      </div>
+    </article>
+
+    <article class="domain-card">
+      <div class="domain-card-top"><span class="domain-dot gold"></span><h3>Social & affective processing</h3><span class="domain-score good">clear signal</span></div>
+      <p>Face expression, emotion, socially relevant categorization, and affective cues.</p>
+      <div class="domain-meta"><span>Benchmarks: 3</span><span>Datasets: 2</span></div>
+      <div class="domain-bars">
+        <div class="domain-bar-row"><span>Expression alignment</span><div class="mini-bar"><span style="width:92%"></span></div><strong>0.92</strong></div>
+        <div class="domain-bar-row"><span>Top-down modulation</span><div class="mini-bar"><span style="width:61%"></span></div><strong>0.61</strong></div>
+      </div>
+    </article>
+
+    <article class="domain-card">
+      <div class="domain-card-top"><span class="domain-dot green"></span><h3>Sensory reliability</h3><span class="domain-score review">needs expansion</span></div>
+      <p>Variability, noise, reliability, gain control, and trial-to-trial stability.</p>
+      <div class="domain-meta"><span>Benchmarks: 2</span><span>Datasets: 1</span></div>
+      <div class="domain-bars">
+        <div class="domain-bar-row"><span>Sensory noise</span><div class="mini-bar"><span style="width:86%"></span></div><strong>0.86</strong></div>
+        <div class="domain-bar-row"><span>Expression alignment</span><div class="mini-bar"><span style="width:30%"></span></div><strong>0.30</strong></div>
+      </div>
+    </article>
+
+    <article class="domain-card">
+      <div class="domain-card-top"><span class="domain-dot rose"></span><h3>Community relevance</h3><span class="domain-score moderate">important</span></div>
+      <p>Plain-language clarity, lived-experience relevance, and priority alignment.</p>
+      <div class="domain-meta"><span>Benchmarks: 1</span><span>Datasets: 1</span></div>
+      <div class="domain-bars">
+        <div class="domain-bar-row"><span>Expression alignment</span><div class="mini-bar"><span style="width:72%"></span></div><strong>0.72</strong></div>
+        <div class="domain-bar-row"><span>AV category transfer</span><div class="mini-bar"><span style="width:55%"></span></div><strong>0.55</strong></div>
+      </div>
+    </article>
+  </div>
 </section>
 
-<section id="datasets">
-  <div class="section-intro"><div class="kicker">Dataset registry</div><h2>Datasets available for benchmarking</h2><p class="lede">Each dataset should be linked to metadata, access conditions, measures, species or participant group, and benchmark-compatible tasks.</p></div>
-  <div class="table-wrap">
-    <table class="table dashboard-table">
-      <thead><tr><th>Dataset</th><th>Source</th><th>Modality</th><th>Task / construct</th><th>Status</th><th>Benchmark use</th></tr></thead>
-      <tbody>
-        <tr><td>Audio-visual object learning cohort</td><td>Human participants</td><td>Behavior + fMRI</td><td>Audio, visual, congruent/incongruent AV object categories</td><td><span class="status-pill ready">metadata ready</span></td><td>Cross-modal decoding; visual vs AV modulation</td></tr>
-        <tr><td>Macaque audio-to-visual category mapping</td><td>Rhesus macaque</td><td>Behavior</td><td>Learned auditory category-to-visual object mapping</td><td><span class="status-pill review">under review</span></td><td>Cross-species generalization; learned category transfer</td></tr>
-        <tr><td>Face expression discrimination</td><td>Human + macaque</td><td>Behavior + IT neural data</td><td>Identity, expression, intensity, behavioral image difficulty</td><td><span class="status-pill ready">benchmark-ready</span></td><td>Model-behavior-neural alignment</td></tr>
-        <tr><td>Sensory reliability assay package</td><td>Animal model</td><td>Assay + neural measures</td><td>Trial-to-trial variability, sensory noise, reliability</td><td><span class="status-pill draft">draft</span></td><td>Test sensory-noise hypotheses against human/animal signatures</td></tr>
-        <tr><td>Community priority questions</td><td>Community feedback</td><td>Structured text</td><td>Explanatory needs, concerns, priorities</td><td><span class="status-pill ready">active</span></td><td>Language review; relevance scoring; priority mapping</td></tr>
-      </tbody>
-    </table>
+<section id="hypotheses">
+  <div class="section-intro">
+    <div class="kicker">Hypothesis comparison</div>
+    <h2>Which neural hypotheses are performing well, and where?</h2>
+    <p class="lede">Rather than a single leaderboard score, ROADMAP should show domain-specific performance. This makes it clear when a hypothesis is strong in one domain but weak or incomplete in another.</p>
+  </div>
+
+  <div class="graph-grid">
+    <div class="graph-card">
+      <div class="graph-card-head"><h3>Behavioral domain profile by hypothesis</h3><span>Higher is stronger benchmark support</span></div>
+
+      <div class="hypothesis-row">
+        <div class="hypothesis-label"><strong>Expression-processing alignment</strong><span>Face behavior + IT neural data</span></div>
+        <div class="hypothesis-bars">
+          <div class="metric-row"><span>Visual discrimination</span><div class="metric-bar"><span style="width:88%"></span></div><strong>0.88</strong></div>
+          <div class="metric-row"><span>Learning & transfer</span><div class="metric-bar"><span style="width:42%"></span></div><strong>0.42</strong></div>
+          <div class="metric-row"><span>Multisensory integration</span><div class="metric-bar"><span style="width:35%"></span></div><strong>0.35</strong></div>
+          <div class="metric-row"><span>Social & affective</span><div class="metric-bar"><span style="width:92%"></span></div><strong>0.92</strong></div>
+          <div class="metric-row"><span>Sensory reliability</span><div class="metric-bar"><span style="width:30%"></span></div><strong>0.30</strong></div>
+        </div>
+      </div>
+
+      <div class="hypothesis-row">
+        <div class="hypothesis-label"><strong>Audio-visual category transfer</strong><span>Macaque learning + human AV data</span></div>
+        <div class="hypothesis-bars">
+          <div class="metric-row"><span>Visual discrimination</span><div class="metric-bar"><span style="width:55%"></span></div><strong>0.55</strong></div>
+          <div class="metric-row"><span>Learning & transfer</span><div class="metric-bar"><span style="width:84%"></span></div><strong>0.84</strong></div>
+          <div class="metric-row"><span>Multisensory integration</span><div class="metric-bar"><span style="width:91%"></span></div><strong>0.91</strong></div>
+          <div class="metric-row"><span>Social & affective</span><div class="metric-bar"><span style="width:40%"></span></div><strong>0.40</strong></div>
+          <div class="metric-row"><span>Sensory reliability</span><div class="metric-bar"><span style="width:38%"></span></div><strong>0.38</strong></div>
+        </div>
+      </div>
+
+      <div class="hypothesis-row">
+        <div class="hypothesis-label"><strong>Sensory noise / reliability</strong><span>Animal-model variability finding</span></div>
+        <div class="hypothesis-bars">
+          <div class="metric-row"><span>Visual discrimination</span><div class="metric-bar"><span style="width:46%"></span></div><strong>0.46</strong></div>
+          <div class="metric-row"><span>Learning & transfer</span><div class="metric-bar"><span style="width:34%"></span></div><strong>0.34</strong></div>
+          <div class="metric-row"><span>Multisensory integration</span><div class="metric-bar"><span style="width:41%"></span></div><strong>0.41</strong></div>
+          <div class="metric-row"><span>Social & affective</span><div class="metric-bar"><span style="width:28%"></span></div><strong>0.28</strong></div>
+          <div class="metric-row"><span>Sensory reliability</span><div class="metric-bar"><span style="width:86%"></span></div><strong>0.86</strong></div>
+        </div>
+      </div>
+
+      <div class="hypothesis-row no-border">
+        <div class="hypothesis-label"><strong>Top-down modulation</strong><span>Feedback / recurrent processing prediction</span></div>
+        <div class="hypothesis-bars">
+          <div class="metric-row"><span>Visual discrimination</span><div class="metric-bar"><span style="width:52%"></span></div><strong>0.52</strong></div>
+          <div class="metric-row"><span>Learning & transfer</span><div class="metric-bar"><span style="width:58%"></span></div><strong>0.58</strong></div>
+          <div class="metric-row"><span>Multisensory integration</span><div class="metric-bar"><span style="width:49%"></span></div><strong>0.49</strong></div>
+          <div class="metric-row"><span>Social & affective</span><div class="metric-bar"><span style="width:61%"></span></div><strong>0.61</strong></div>
+          <div class="metric-row"><span>Sensory reliability</span><div class="metric-bar"><span style="width:44%"></span></div><strong>0.44</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="graph-card">
+      <div class="graph-card-head"><h3>Domain-by-domain support map</h3><span>Fast visual readout of where evidence is strong, partial, or missing</span></div>
+      <div class="support-heatmap">
+        <div class="heatmap-row heatmap-head">
+          <span></span><span>Visual</span><span>Learning</span><span>Multi-sensory</span><span>Social</span><span>Reliability</span><span>Community</span>
+        </div>
+        <div class="heatmap-row"><strong>Expression alignment</strong><span class="heat high">High</span><span class="heat low">Weak</span><span class="heat low">Weak</span><span class="heat high">High</span><span class="heat low">Weak</span><span class="heat med">Moderate</span></div>
+        <div class="heatmap-row"><strong>AV category transfer</strong><span class="heat med">Moderate</span><span class="heat high">High</span><span class="heat high">High</span><span class="heat low">Weak</span><span class="heat low">Weak</span><span class="heat med">Moderate</span></div>
+        <div class="heatmap-row"><strong>Sensory noise</strong><span class="heat med">Moderate</span><span class="heat low">Weak</span><span class="heat low">Weak</span><span class="heat low">Weak</span><span class="heat high">High</span><span class="heat low">Weak</span></div>
+        <div class="heatmap-row"><strong>Top-down modulation</strong><span class="heat med">Moderate</span><span class="heat med">Moderate</span><span class="heat med">Moderate</span><span class="heat med">Moderate</span><span class="heat low">Weak</span><span class="heat low">Weak</span></div>
+      </div>
+      <div class="heat-legend">
+        <span><i class="heat high"></i>High support</span>
+        <span><i class="heat med"></i>Moderate / partial</span>
+        <span><i class="heat low"></i>Weak / missing</span>
+      </div>
+
+      <div class="insight-list">
+        <div class="insight-item"><strong>Best-established hypothesis:</strong> Expression-processing alignment is strongest overall because it links human behavior, macaque behavior, and IT neural data.</div>
+        <div class="insight-item"><strong>Fastest-growing area:</strong> Audio-visual category transfer is gaining strength due to clear multisensory and learning-domain evidence.</div>
+        <div class="insight-item"><strong>Critical gap:</strong> Sensory reliability has a compelling animal-model signal but still needs harmonized human tasks and broader neural benchmarks.</div>
+      </div>
+    </div>
   </div>
 </section>
 
+<section id="registry">
+  <div class="section-intro">
+    <div class="kicker">Dataset registry</div>
+    <h2>Datasets currently available for benchmarking</h2>
+    <p class="lede">Every dataset should remain discoverable, linked to its metadata and access conditions, and clearly mapped to the behavioral domains and hypotheses it informs.</p>
+  </div>
+  <div class="dataset-card-grid">
+    <article class="dataset-card"><div class="dataset-card-top"><h3>Audio-visual object learning cohort</h3><span class="status-pill ready">metadata ready</span></div><p>Human participants · Behavior + fMRI</p><ul><li>Domains: Multisensory integration; learning & transfer</li><li>Benchmark use: Cross-modal decoding; visual vs AV modulation</li><li>Hypothesis links: AV category transfer; top-down modulation</li></ul></article>
+    <article class="dataset-card"><div class="dataset-card-top"><h3>Macaque audio-to-visual category mapping</h3><span class="status-pill review">under review</span></div><p>Rhesus macaque · Behavior</p><ul><li>Domains: Learning & transfer; multisensory integration</li><li>Benchmark use: Cross-species generalization; learned category transfer</li><li>Hypothesis links: AV category transfer</li></ul></article>
+    <article class="dataset-card"><div class="dataset-card-top"><h3>Face expression discrimination</h3><span class="status-pill ready">benchmark-ready</span></div><p>Human + macaque · Behavior + IT neural data</p><ul><li>Domains: Visual discrimination; social & affective processing</li><li>Benchmark use: Model-behavior-neural alignment</li><li>Hypothesis links: Expression-processing alignment</li></ul></article>
+    <article class="dataset-card"><div class="dataset-card-top"><h3>Sensory reliability assay package</h3><span class="status-pill draft">draft</span></div><p>Animal model · Assay + neural measures</p><ul><li>Domains: Sensory reliability</li><li>Benchmark use: Test sensory-noise hypotheses across species</li><li>Hypothesis links: Sensory noise / reliability</li></ul></article>
+  </div>
+</section>
 
 <section id="papers">
-  <div class="section-intro"><div class="kicker">Source-linked benchmarks</div><h2>Original papers and benchmark records</h2><p class="lede">Every benchmark should preserve a link to the study or dataset that created it, rather than appearing as an anonymous score.</p></div>
-  <div class="table-wrap">
-    <table class="table dashboard-table">
-      <thead><tr><th>Benchmark</th><th>Family</th><th>Evidence source</th><th>ROADMAP use</th><th>Source</th></tr></thead>
-      <tbody>
-        <tr><td>Face expression difficulty</td><td>Visual discrimination</td><td>Human + macaque behavior; IT neural recordings</td><td>Model-behavior-neural alignment; expression intensity signatures</td><td><a href="https://doi.org/10.1101/2024.01.01.000000" target="_blank" rel="noopener">source record / DOI placeholder</a></td></tr>
-        <tr><td>Audio-visual object category learning</td><td>Learning and transfer</td><td>Macaque audio-to-visual mapping; human AV fMRI</td><td>Cross-modal learning and generalization benchmark</td><td><a href="https://doi.org/10.1101/2024.01.01.000001" target="_blank" rel="noopener">source record / DOI placeholder</a></td></tr>
-        <tr><td>Visual search / category variability</td><td>Visual discrimination</td><td>Human visual search and object-category variability</td><td>Test whether neural hypotheses predict broad vs narrow templates</td><td><a href="https://www.sciencedirect.com/science/article/abs/pii/S0028393217301045" target="_blank" rel="noopener">example paper link</a></td></tr>
-        <tr><td>Sensory reliability assay</td><td>Neural alignment</td><td>Animal-model trial-to-trial variability and sensory reliability measures</td><td>Test sensory-noise and gain hypotheses across species</td><td><a href="https://doi.org/10.1101/2024.01.01.000002" target="_blank" rel="noopener">source record / DOI placeholder</a></td></tr>
-        <tr><td>Community relevance review</td><td>Community review</td><td>Structured community questions, language review, and priority feedback</td><td>Flag unclear, overreaching, or low-relevance claims before public communication</td><td><a href="community.html#feedback-form">ROADMAP feedback record</a></td></tr>
-      </tbody>
-    </table>
+  <div class="section-intro">
+    <div class="kicker">Source-linked benchmarks</div>
+    <h2>Open the original papers behind each benchmark.</h2>
+    <p class="lede">Benchmarks should never appear as isolated scores. Each one should point back to the source study, dataset record, or community record that created it.</p>
+  </div>
+  <div class="source-card-grid">
+    <article class="source-card"><span class="source-family">Visual discrimination</span><h3>Face expression difficulty</h3><p>Human + macaque behavior; IT neural recordings. Used for model-behavior-neural alignment and expression intensity signatures.</p><a href="https://doi.org/10.1101/2024.01.01.000000" target="_blank" rel="noopener">Open source record</a></article>
+    <article class="source-card"><span class="source-family">Learning & transfer</span><h3>Audio-visual object category learning</h3><p>Macaque audio-to-visual mapping with matched human AV fMRI benchmarks for cross-modal learning and generalization.</p><a href="https://doi.org/10.1101/2024.01.01.000001" target="_blank" rel="noopener">Open source record</a></article>
+    <article class="source-card"><span class="source-family">Visual discrimination</span><h3>Visual search / category variability</h3><p>Human visual search and object-category variability benchmark used to test template specificity and generalization.</p><a href="https://www.sciencedirect.com/science/article/abs/pii/S0028393217301045" target="_blank" rel="noopener">Open example paper</a></article>
+    <article class="source-card"><span class="source-family">Neural alignment</span><h3>Sensory reliability assay</h3><p>Animal-model trial-to-trial variability and sensory reliability benchmark for noise and gain hypotheses.</p><a href="https://doi.org/10.1101/2024.01.01.000002" target="_blank" rel="noopener">Open source record</a></article>
+    <article class="source-card"><span class="source-family">Community review</span><h3>Community relevance review</h3><p>Structured community questions, language review, and priority feedback used to flag unclear or low-relevance public claims.</p><a href="community.html#feedback-form">Open ROADMAP feedback record</a></article>
   </div>
 </section>
 
 <section id="matrix">
-  <div class="section-intro"><div class="kicker">Benchmark matrix</div><h2>What has been tested against which evidence?</h2><p class="lede">ROADMAP should avoid a single leaderboard score. The dashboard reports where a hypothesis or simulation has evidence, where it fails, and what needs to be tested next.</p></div>
+  <div class="section-intro">
+    <div class="kicker">Benchmark matrix</div>
+    <h2>What has been tested against which evidence?</h2>
+    <p class="lede">This matrix is still useful for a detailed read. It shows where a hypothesis has linked evidence, where Brain-Score collaboration is still needed, and what is required before translation-ready interpretation.</p>
+  </div>
   <div class="table-wrap">
     <table class="table benchmark-matrix">
       <thead><tr><th>Hypothesis / simulation</th><th>Animal-model evidence</th><th>Human behavioral data</th><th>Human neural data</th><th>Neurotypical simulation</th><th>Community review</th><th>Readiness</th></tr></thead>
       <tbody>
         <tr><td><strong>Sensory noise / reliability hypothesis</strong><br><span>Animal-model variability finding</span></td><td class="cell-pass">linked</td><td class="cell-warn">partial</td><td class="cell-warn">pending</td><td class="cell-run">Brain-Score route</td><td class="cell-warn">needed</td><td><span class="readiness exploratory">exploratory</span></td></tr>
         <tr><td><strong>Audio-visual category transfer hypothesis</strong><br><span>Macaque learning study</span></td><td class="cell-pass">linked</td><td class="cell-pass">linked</td><td class="cell-warn">early fMRI</td><td class="cell-run">queued</td><td class="cell-warn">needed</td><td><span class="readiness research">research-ready</span></td></tr>
-        <tr><td><strong>Expression-processing alignment hypothesis</strong><br><span>Face behavior + IT neural data</span></td><td class="cell-pass">linked</td><td class="cell-pass">linked</td><td class="cell-pass">linked</td><td class="cell-pass">completed</td><td class="cell-warn">language review</td><td><span class="readiness research">research-ready</span></td></tr>
+        <tr><td><strong>Expression-processing alignment hypothesis</strong><br><span>Face behavior + IT neural data</span></td><td class="cell-pass">linked</td><td class="cell-pass">linked</td><td class="cell-pass">linked</td><td class="cell-pass">completed</td><td class="cell-run">language review</td><td><span class="readiness research">research-ready</span></td></tr>
         <tr><td><strong>Top-down modulation hypothesis</strong><br><span>Feedback / recurrent processing prediction</span></td><td class="cell-warn">candidate</td><td class="cell-warn">pending</td><td class="cell-warn">pending</td><td class="cell-run">requested</td><td class="cell-warn">needed</td><td><span class="readiness exploratory">exploratory</span></td></tr>
       </tbody>
     </table>
@@ -91,13 +266,21 @@
 
 <section>
   <div class="grid grid-2">
-    <div class="card"><h2>Brain-Score collaboration lane</h2><p>Neurotypical model simulations should be routed through a Brain-Score collaboration workflow. ROADMAP should store the request, link the relevant datasets and hypothesis, and import the benchmark summary when the simulation is complete.</p><div class="badges"><span class="badge">Neurotypical baseline</span><span class="badge">Model simulation</span><span class="badge">Partner workflow</span></div></div>
-    <div class="card"><h2>ROADMAP-specific lane</h2><p>ROADMAP focuses on autism-relevant hypothesis organization: animal-model findings, human datasets, benchmark compatibility, evidence cards, limitations, and community-readable summaries.</p><div class="badges"><span class="badge">Neural hypotheses</span><span class="badge">Cross-species evidence</span><span class="badge">Translation readiness</span></div></div>
+    <div class="card">
+      <div class="kicker">Brain-Score collaboration lane</div>
+      <h3>Neurotypical model simulations</h3>
+      <p>Neurotypical model simulations should be routed through a Brain-Score collaboration workflow. ROADMAP stores the request, links the relevant datasets and hypothesis, and imports the benchmark summary when the simulation is complete.</p>
+    </div>
+    <div class="card">
+      <div class="kicker">ROADMAP-specific lane</div>
+      <h3>Autism-relevant interpretation</h3>
+      <p>ROADMAP focuses on organizing animal-model findings, human datasets, benchmark compatibility, limitations, and community-readable summaries so that results are understandable beyond a raw score table.</p>
+    </div>
   </div>
 </section>
 
 <section id="cards">
-  <div class="section-intro"><div class="kicker">Evidence cards</div><h2>Example benchmark cards</h2></div>
+  <div class="section-intro"><div class="kicker">Evidence cards</div><h2>Example public-facing benchmark summaries</h2></div>
   <div class="grid grid-3">
     <div class="card evidence-card"><span class="status-pill ready">benchmark-ready</span><h3>Face expression alignment</h3><p>Human behavior, macaque behavior, IT neural data, and ANN alignment available. Needs final community-facing explanation review before public summary.</p></div>
     <div class="card evidence-card"><span class="status-pill review">under review</span><h3>Audio-visual category transfer</h3><p>Behavioral evidence supports learned mapping. Human fMRI and simulation comparisons are being prepared for dashboard integration.</p></div>
@@ -106,7 +289,12 @@
 </section>
 
 </main>
-<footer class="footer"><div class="footer-inner"><div><strong>ROADMAP</strong><br><span class="note">Benchmark dashboard for datasets, neural hypotheses, simulations, and translation-readiness records.</span></div><div class="badges"><span class="badge">Dataset registry</span><span class="badge">Hypothesis registry</span><span class="badge">Benchmark matrix</span></div></div></footer>
+<footer class="footer">
+  <div class="footer-inner">
+    <div><strong>ROADMAP</strong><br><span class="note">Benchmark dashboard for datasets, neural hypotheses, simulations, and translation-readiness records.</span></div>
+    <div class="badges"><span class="badge">Grouped domains</span><span class="badge">Source-linked benchmarks</span><span class="badge">Hypothesis comparison</span></div>
+  </div>
+</footer>
 <script src="script.js"></script>
 </body>
 </html>
