@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ROADMAP | Submit Hypotheses, Data, and Simulation Jobs</title>
-  <meta name="description" content="Submission forms for ROADMAP neural hypotheses, datasets, and simulation jobs." />
+  <title>ROADMAP | Submit Neural Hypotheses, Behavior Data, and Simulation Jobs</title>
+  <meta name="description" content="Submission forms for ROADMAP neural hypotheses, behavior datasets, and simulation jobs." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -34,20 +34,22 @@
 
 <div class="page-hero">
   <span class="eyebrow">Submission center</span>
-  <h1>Submit hypotheses, datasets, or simulation jobs.</h1>
-  <p class="lede">This page is a production-style UI mockup. It collects the metadata ROADMAP needs to validate submissions, route jobs to compute, and return benchmarked results to the right audience.</p>
+  <h1>Submit neural hypotheses, behavior data, or simulation jobs.</h1>
+  <p class="lede">This page is a production-style UI mockup. It collects the metadata ROADMAP needs to review neural hypotheses, receive behavior datasets, route jobs to compute, and return benchmarked results to the right audience.</p>
 </div>
 
 <section>
   <div class="submit-tabs" role="tablist" aria-label="Submission type">
     <button class="submit-tab active" id="model" data-submit-tab="model" type="button">Neural hypothesis submission<small>Animal-model evidence, mechanism, predictions</small></button>
-    <button class="submit-tab" id="data" data-submit-tab="data" type="button">Dataset submission<small>Task, participants, measures, metadata</small></button>
+    <button class="submit-tab" id="data" data-submit-tab="data" type="button">Behavior submission<small>Task, participants, measures, metadata</small></button>
     <button class="submit-tab" id="job" data-submit-tab="job" type="button">Simulation job<small>Model, perturbation, queue target, outputs</small></button>
   </div>
 
   <div class="submission-shell">
-    <form class="submission-form" id="roadmapSubmissionForm">
-      <input type="hidden" id="submissionType" value="model" />
+    <form class="submission-form" id="roadmapSubmissionForm" action="https://formspree.io/f/mrewzdrk" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" id="formSubject" value="New ROADMAP neural hypothesis submission" />
+      <input type="hidden" name="ROADMAP submission type" id="formTypeLabel" value="Neural hypothesis submission" />
+      <input type="hidden" id="submissionType" name="submission_type" value="model" />
       <div id="modelFields" data-form-section="model">
         <h2>Neural hypothesis submission</h2>
         <p class="note">Use this when an animal-model study reveals a testable neural hypothesis for autistic behavior, sensory processing, learning, social communication, or intervention response. Neurotypical model simulations can be routed through the Brain-Score collaboration workflow.</p>
@@ -65,16 +67,16 @@
       </div>
 
       <div id="dataFields" data-form-section="data" hidden>
-        <h2>Dataset submission</h2>
-        <p class="note">Use this when a researcher wants to contribute a behavioral, imaging, neural, task, stimulus, or protocol dataset.</p>
+        <h2>Behavior submission</h2>
+        <p class="note">Use this when a researcher wants to contribute a behavioral dataset, task, stimulus set, protocol, or participant-level summary that can become part of the ROADMAP benchmark registry.</p>
         <div class="form-grid">
-          <label>Dataset title <span class="required-mark">*</span><input data-json="dataset_title" placeholder="e.g., Audio-visual object learning cohort" /></label>
-          <label>Data type<select data-json="data_type"><option>Behavioral</option><option>fMRI</option><option>Electrophysiology</option><option>fUS</option><option>Task / stimulus protocol</option><option>Multimodal</option></select></label>
+          <label>Behavior dataset title <span class="required-mark">*</span><input data-json="dataset_title" required placeholder="e.g., Audio-visual object learning cohort" /></label>
+          <label>Submission type<select data-json="data_type"><option>Behavioral dataset</option><option>Behavioral task / stimulus protocol</option><option>Behavior + fMRI metadata</option><option>Behavior + electrophysiology metadata</option><option>Behavior + fUS metadata</option><option>Multimodal behavior-linked dataset</option></select></label>
           <label>Species / participant group<select data-json="species_group"><option>Human participants</option><option>Rhesus macaque</option><option>Rodent model</option><option>Mixed / cross-species</option><option>Other</option></select></label>
           <label>Access level<select data-json="access_level"><option>Public metadata only</option><option>Controlled access</option><option>Internal ROADMAP review</option><option>Public dataset</option></select></label>
-          <label class="full">Task and outcome measures<textarea data-json="task_measures" rows="4" placeholder="Summarize stimuli, timing, response measures, neural measures, and primary outcomes."></textarea></label>
+          <label class="full">Task and behavioral outcome measures <span class="required-mark">*</span><textarea data-json="task_measures" rows="4" required placeholder="Summarize stimuli, timing, response measures, behavioral outcome variables, participant groups, and primary findings."></textarea></label>
           <label class="full">Ethics / consent notes<textarea data-json="ethics_notes" rows="3" placeholder="Describe ethics approval, consent constraints, de-identification, and sharing limits."></textarea></label>
-          <label class="full">Upload dataset or metadata file<input data-json="data_file" type="file" /></label>
+          <label class="full">Upload behavior dataset or metadata file<input data-json="data_file" type="file" /></label>
         </div>
       </div>
 
@@ -99,15 +101,15 @@
         <label class="full">Notes for ROADMAP team<textarea data-json="team_notes" rows="3" placeholder="Anything the review team should know before validation or job dispatch."></textarea></label>
       </div>
       <div class="actions">
-        <button class="button primary" type="button" onclick="previewSubmission()">Preview submission</button>
+        <button class="button secondary" type="button" onclick="previewSubmission()">Preview submission</button>
         <button class="button secondary" type="button" onclick="downloadSubmissionJSON()">Download JSON</button>
-        <button class="button secondary" type="button" onclick="fakeSubmitRoadmap()">Submit mock request</button>
+        <button class="button primary" id="realSubmitButton" type="submit">Submit to ROADMAP</button>
       </div>
     </form>
 
     <aside class="preview-panel" aria-live="polite">
       <h3>Submission preview</h3>
-      <p class="note" style="color:#aebed2;">The production backend would receive this JSON, validate it, store the record, and create a benchmark or simulation job if needed.</p>
+      <p class="note" style="color:#aebed2;">For neural hypotheses and behavior submissions, this form sends the active tab to the ROADMAP team by email using Formspree. The JSON preview shows the structured record that can later move into the benchmark registry.</p>
       <pre id="submissionPreview">{
   "submission_type": "model",
   "status": "draft"
@@ -123,7 +125,7 @@
 </section>
 
 </main>
-<footer class="footer"><div class="footer-inner"><div><strong>ROADMAP</strong><br><span class="note">Submission UI for neural hypotheses, data, benchmark requests, and simulation jobs.</span></div><div class="badges"><span class="badge">Hypothesis registry</span><span class="badge">Dataset registry</span><span class="badge">Benchmark queue</span></div></div></footer>
+<footer class="footer"><div class="footer-inner"><div><strong>ROADMAP</strong><br><span class="note">Submission UI for neural hypotheses, behavior data, benchmark requests, and simulation jobs.</span></div><div class="badges"><span class="badge">Hypothesis registry</span><span class="badge">Behavior registry</span><span class="badge">Benchmark queue</span></div></div></footer>
 <script src="script.js"></script>
 </body>
 </html>

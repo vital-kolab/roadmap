@@ -32,3 +32,13 @@ Upload the contents of this folder to your GitHub Pages repository root.
 - Added a community-facing Ask ROADMAP static chatbot prototype.
 - Added a benchmark dashboard page showing datasets, neural hypotheses, model/simulation benchmarking status, and translation-readiness cards.
 - Added Brain-Score collaboration framing for neurotypical model simulations.
+
+
+## Live submission endpoints
+
+The `submissions.html` page now posts active ROADMAP submissions to Formspree:
+
+- Neural hypothesis submission: `https://formspree.io/f/mrewzdrk`
+- Behavior submission: `https://formspree.io/f/mdarnjyp`
+
+The simulation job tab remains a static mock request until a ROADMAP backend/compute queue is connected.

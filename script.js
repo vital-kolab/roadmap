@@ -53,10 +53,32 @@ renderBenchmarks(); renderDashboard(); updateParams();
 // ROADMAP submission center interactivity
 function setSubmissionTab(type){
   const hidden = document.getElementById('submissionType');
+  const form = document.getElementById('roadmapSubmissionForm');
+  const subject = document.getElementById('formSubject');
+  const typeLabel = document.getElementById('formTypeLabel');
+  const submitButton = document.getElementById('realSubmitButton');
   if(!hidden) return;
   hidden.value = type;
   document.querySelectorAll('[data-submit-tab]').forEach(btn => btn.classList.toggle('active', btn.dataset.submitTab === type));
-  document.querySelectorAll('[data-form-section]').forEach(sec => { sec.hidden = sec.dataset.formSection !== type; });
+  document.querySelectorAll('[data-form-section]').forEach(sec => {
+    const active = sec.dataset.formSection === type;
+    sec.hidden = !active;
+    sec.querySelectorAll('input, select, textarea').forEach(el => { el.disabled = !active; });
+  });
+  if(form){
+    if(type === 'model') form.action = 'https://formspree.io/f/mrewzdrk';
+    if(type === 'data') form.action = 'https://formspree.io/f/mdarnjyp';
+    if(type === 'job') form.action = '#';
+  }
+  if(subject){
+    subject.value = type === 'model' ? 'New ROADMAP neural hypothesis submission' : type === 'data' ? 'New ROADMAP behavior submission' : 'New ROADMAP simulation job request';
+  }
+  if(typeLabel){
+    typeLabel.value = type === 'model' ? 'Neural hypothesis submission' : type === 'data' ? 'Behavior submission' : 'Simulation job request';
+  }
+  if(submitButton){
+    submitButton.textContent = type === 'model' ? 'Submit neural hypothesis' : type === 'data' ? 'Submit behavior data' : 'Save mock simulation request';
+  }
   previewSubmission();
 }
 document.querySelectorAll('[data-submit-tab]').forEach(btn => btn.addEventListener('click', () => setSubmissionTab(btn.dataset.submitTab)));
@@ -72,7 +94,7 @@ function submissionData(){
   };
   if(active) active.querySelectorAll('[data-json]').forEach(collect);
   if(form) form.querySelectorAll(':scope > .form-grid [data-json]').forEach(collect);
-  data.next_backend_action = type === 'job' ? 'validate_and_create_slurm_or_brainscore_manifest' : type === 'data' ? 'validate_metadata_and_access_level' : 'validate_neural_hypothesis_registry_entry';
+  data.next_backend_action = type === 'job' ? 'validate_and_create_slurm_or_brainscore_manifest' : type === 'data' ? 'email_behavior_submission_and_validate_metadata' : 'email_neural_hypothesis_and_validate_registry_entry';
   data.preview_job_id = 'RM-' + Math.floor(100000 + Math.random()*899999);
   return data;
 }
@@ -98,13 +120,31 @@ function fakeSubmitRoadmap(){
   if(pre) pre.textContent = JSON.stringify(data, null, 2);
   alert('Mock submission saved in this browser. In production this would be sent to the ROADMAP API.');
 }
+document.querySelectorAll('#roadmapSubmissionForm [data-json]').forEach(el => {
+  if(!el.name) el.name = el.dataset.json.replaceAll('_', ' ');
+});
+const roadmapSubmissionForm = document.getElementById('roadmapSubmissionForm');
+if(roadmapSubmissionForm){
+  roadmapSubmissionForm.addEventListener('submit', function(event){
+    const data = submissionData();
+    if(data.submission_type === 'job'){
+      event.preventDefault();
+      fakeSubmitRoadmap();
+      return;
+    }
+    // Keep a local record for the submitter before the browser posts to Formspree.
+    data.status = 'submitted_to_formspree_email_endpoint';
+    localStorage.setItem('roadmapLastSubmission', JSON.stringify(data));
+  });
+}
 document.querySelectorAll('#roadmapSubmissionForm input, #roadmapSubmissionForm select, #roadmapSubmissionForm textarea').forEach(el => {
   el.addEventListener('input', previewSubmission);
   el.addEventListener('change', previewSubmission);
 });
 if(location.hash === '#data') setSubmissionTab('data');
-if(location.hash === '#job') setSubmissionTab('job');
-if(location.hash === '#model') setSubmissionTab('model');
+else if(location.hash === '#job') setSubmissionTab('job');
+else if(location.hash === '#model') setSubmissionTab('model');
+else setSubmissionTab((document.getElementById('submissionType')||{}).value || 'model');
 previewSubmission();
 
 
