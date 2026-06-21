@@ -7,7 +7,7 @@
   <meta name="description" content="ROADMAP is a unified human–technology platform for translational autism research." />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="home-minimal">
+<body class="home-minimal home-refined">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="minimal-header">
@@ -30,64 +30,113 @@
 </header>
 
 <main id="main" class="minimal-main">
-  <section class="minimal-hero" aria-labelledby="home-title">
-    <div class="minimal-eyebrow">Welcome to ROADMAP</div>
-    <h2 id="home-title">A unified human–technology platform for translational autism research.</h2>
-    <p class="minimal-lede">
-      ROADMAP connects clinical questions, human datasets, animal-model hypotheses, computational models, neural hypotheses, and community feedback through one shared evidence layer.
-    </p>
+  <section class="minimal-hero home-hero-refined" aria-labelledby="home-title">
+    <div class="home-hero-grid">
+      <div class="home-copy-col">
+        <div class="minimal-eyebrow">Welcome to ROADMAP</div>
+        <h2 id="home-title">A more connected way to organize translational autism research.</h2>
+        <p class="minimal-lede">
+          ROADMAP brings together clinicians, human researchers, animal-model researchers, and community members around one shared evidence layer — so datasets, neural hypotheses, benchmark results, and public explanations can remain connected.
+        </p>
+        <div class="home-cta-row">
+          <a class="button primary" href="benchmark.html">Explore benchmark dashboard</a>
+          <a class="button secondary" href="submissions.html">Submit to ROADMAP</a>
+        </div>
+        <div class="home-trust-row">
+          <span class="trust-pill">Cross-species translation</span>
+          <span class="trust-pill">Source-linked benchmarks</span>
+          <span class="trust-pill">Brain-Score collaboration lane</span>
+        </div>
+      </div>
+
+      <aside class="home-side-panel" aria-label="Platform overview">
+        <div class="home-panel-card home-panel-card-main">
+          <div class="home-panel-kicker">Platform overview</div>
+          <h2>What happens in ROADMAP?</h2>
+          <div class="home-process-list">
+            <div class="home-process-item"><span>01</span><div><strong>Evidence comes in</strong><p>Behavioral datasets and neural hypotheses are submitted with metadata, provenance, and scope.</p></div></div>
+            <div class="home-process-item"><span>02</span><div><strong>Benchmarks are organized</strong><p>Benchmarks are grouped by behavioral domain and linked back to original papers and dataset records.</p></div></div>
+            <div class="home-process-item"><span>03</span><div><strong>Results stay interpretable</strong><p>Visitors can see where a hypothesis is strong, weak, or still under review across evidence layers.</p></div></div>
+          </div>
+        </div>
+        <div class="home-panel-card home-panel-card-stats">
+          <div class="home-mini-stat"><strong>12</strong><span>datasets registered</span></div>
+          <div class="home-mini-stat"><strong>8</strong><span>neural hypotheses</span></div>
+          <div class="home-mini-stat"><strong>34</strong><span>benchmark jobs</span></div>
+          <div class="home-mini-stat"><strong>5</strong><span>translation-ready summaries</span></div>
+        </div>
+      </aside>
+    </div>
   </section>
 
-  <section class="portal-selector" aria-labelledby="portal-title">
+  <section class="home-value-strip" aria-label="Platform strengths">
+    <article class="value-card">
+      <span class="value-label">Shared record</span>
+      <h3>One traceable benchmark system</h3>
+      <p>ROADMAP keeps papers, datasets, hypotheses, simulations, and public-facing summaries tied together in one place.</p>
+    </article>
+    <article class="value-card">
+      <span class="value-label">Clear interpretation</span>
+      <h3>Understand what is established versus exploratory</h3>
+      <p>The platform is designed to show evidence strength clearly, instead of reducing everything to a single score.</p>
+    </article>
+    <article class="value-card">
+      <span class="value-label">Role-specific entry points</span>
+      <h3>Each portal has its own purpose and tone</h3>
+      <p>Clinicians, researchers, hypothesis contributors, and community members can each enter through a page shaped for their needs.</p>
+    </article>
+  </section>
+
+  <section class="portal-selector home-portal-selector" aria-labelledby="portal-title">
     <div class="selector-heading">
       <div>
         <p class="selector-kicker">Choose your entry point</p>
-        <h2 id="portal-title">What would you like to do?</h2>
+        <h2 id="portal-title">Explore ROADMAP by portal</h2>
       </div>
       <p>
-        Each portal is tailored to a different role while preserving a common scientific record across the platform.
+        Each portal has its own look and workflow, while all of them remain connected to the same underlying benchmark and evidence system.
       </p>
     </div>
 
-    <div class="minimal-portal-grid">
+    <div class="minimal-portal-grid home-portal-grid-refined">
       <a class="minimal-portal-card clinician-card" href="clinicians.html">
-        <div class="card-number">01</div>
         <div>
+          <div class="card-number">01</div>
           <p class="card-role">Clinicians</p>
           <h3>Review evidence</h3>
-          <p>Access concise summaries of model and dataset evidence, uncertainty, and translation readiness.</p>
+          <p>Read concise summaries of benchmark evidence, uncertainty, and translation readiness.</p>
         </div>
-        <span class="card-action">Enter portal</span>
+        <span class="card-action">Enter clinician portal</span>
       </a>
 
       <a class="minimal-portal-card researcher-card" href="human-researchers.html">
-        <div class="card-number">02</div>
         <div>
+          <div class="card-number">02</div>
           <p class="card-role">Human researchers</p>
           <h3>Submit data</h3>
-          <p>Contribute behavioral, neuroimaging, task, stimulus, protocol, and metadata records for benchmarking.</p>
+          <p>Contribute behavioral and neural datasets, task metadata, and protocols for benchmarking.</p>
         </div>
-        <span class="card-action">Enter portal</span>
+        <span class="card-action">Enter researcher portal</span>
       </a>
 
       <a class="minimal-portal-card model-card" href="animal-models.html">
-        <div class="card-number">03</div>
         <div>
+          <div class="card-number">03</div>
           <p class="card-role">Neural hypotheses</p>
           <h3>Submit hypotheses</h3>
-          <p>Register neural hypotheses from animal-model studies, predicted mechanisms, assays, and validation claims.</p>
+          <p>Register animal-model findings as testable neural hypotheses with translational predictions.</p>
         </div>
-        <span class="card-action">Enter portal</span>
+        <span class="card-action">Enter hypothesis portal</span>
       </a>
 
       <a class="minimal-portal-card community-card" href="community.html">
-        <div class="card-number">04</div>
         <div>
+          <div class="card-number">04</div>
           <p class="card-role">Autistic community</p>
-          <h3>Ask, respond, and shape priorities</h3>
-          <p>Ask questions, request plain-language explanations, comment on priorities, and provide lived-experience feedback.</p>
+          <h3>Ask questions and shape priorities</h3>
+          <p>Request clear explanations, offer feedback, and help guide what the platform pays attention to.</p>
         </div>
-        <span class="card-action">Enter portal</span>
+        <span class="card-action">Enter community portal</span>
       </a>
     </div>
   </section>
