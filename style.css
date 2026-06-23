@@ -2338,3 +2338,422 @@ body {
 @media (max-width: 720px) {
   .knowledge-pipeline, .knowledge-user-grid { grid-template-columns:1fr; }
 }
+
+
+/* Landing-page-only portal layout with symbolic background artwork */
+.roadmap-landing-only {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f6f2ea 0%, #f1ede5 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+.roadmap-landing-only .roadmap-assistant-launcher,
+.roadmap-landing-only .roadmap-assistant-panel {
+  display: none !important;
+}
+.landing-brandbar {
+  position: relative;
+  z-index: 5;
+  padding: 1.45rem 2rem 0;
+}
+.landing-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .9rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: -.02em;
+}
+.landing-logo {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #b8862f 0%, #946620 100%);
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(145, 106, 39, .18);
+}
+.landing-wordmark {
+  font-size: 1.7rem;
+  font-weight: 900;
+}
+.landing-main {
+  min-height: calc(100vh - 86px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 2rem 2.8rem;
+}
+.landing-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.backdrop-panel {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: .22;
+  filter: saturate(.92) contrast(1.02);
+}
+.backdrop-panel-left {
+  width: min(34vw, 480px);
+  height: min(36vw, 480px);
+  left: 2.5rem;
+  top: 8.2rem;
+  background-image: url('assets/bg-neurodiversity.svg');
+}
+.backdrop-panel-right {
+  width: min(33vw, 470px);
+  height: min(35vw, 470px);
+  right: 2.5rem;
+  top: 9rem;
+  background-image: url('assets/bg-support.svg');
+}
+.backdrop-panel-bottom {
+  width: min(40vw, 560px);
+  height: min(28vw, 380px);
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  background-image: url('assets/bg-sensory.svg');
+  opacity: .18;
+}
+.landing-portals-shell {
+  position: relative;
+  z-index: 2;
+  width: min(1680px, calc(100vw - 6rem));
+  background: rgba(255,255,255,.84);
+  border: 1px solid rgba(215, 204, 184, .9);
+  border-radius: 34px;
+  box-shadow: 0 30px 80px rgba(49, 43, 30, .10);
+  backdrop-filter: blur(12px);
+  padding: 2.1rem 1.9rem 1.9rem;
+}
+.landing-selector-heading {
+  margin-bottom: 1.4rem;
+}
+.landing-selector-heading .selector-kicker {
+  margin-bottom: .6rem;
+}
+.landing-selector-heading h1 {
+  font-size: clamp(3rem, 5vw, 5.4rem);
+  line-height: .95;
+  letter-spacing: -.055em;
+  margin: 0;
+}
+.landing-portal-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.landing-portal-grid .minimal-portal-card {
+  min-height: 452px;
+  border-radius: 28px;
+  padding: 1.55rem 1.55rem 1.25rem;
+  background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(250,248,242,.96) 100%);
+  border: 1px solid rgba(216, 206, 190, .95);
+  box-shadow: 0 14px 38px rgba(43, 40, 32, .045);
+}
+.landing-portal-grid .minimal-portal-card::before {
+  height: 5px;
+}
+.landing-portal-grid .minimal-portal-card p:not(.card-role) {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.landing-portal-grid .minimal-portal-card h3 {
+  font-size: clamp(2rem, 1.6vw, 2.35rem);
+  line-height: 1.03;
+  max-width: 10ch;
+  margin-bottom: .75rem;
+}
+.landing-portal-grid .card-number {
+  color: #8b96a6;
+  font-size: 1.5rem;
+  margin-bottom: 2.6rem;
+}
+.landing-portal-grid .card-role {
+  font-size: 1.08rem;
+  letter-spacing: .13em;
+  margin-bottom: .95rem;
+}
+.landing-portal-grid .card-action {
+  margin-top: auto;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(216, 206, 190, .9);
+  font-size: 1rem;
+}
+.landing-portal-grid .card-action::after {
+  font-size: 2rem;
+}
+.landing-portal-grid .minimal-portal-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 48px rgba(43, 40, 32, .08);
+}
+.landing-portal-grid .minimal-portal-card.clinician-card { background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(240,245,255,.96) 100%); }
+.landing-portal-grid .minimal-portal-card.researcher-card { background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(244,241,252,.96) 100%); }
+.landing-portal-grid .minimal-portal-card.model-card { background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(251,244,233,.96) 100%); }
+.landing-portal-grid .minimal-portal-card.community-card { background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(244,247,240,.96) 100%); }
+
+@media (max-width: 1400px) {
+  .landing-portals-shell { width: min(1400px, calc(100vw - 4rem)); }
+  .landing-portal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .landing-portal-grid .minimal-portal-card { min-height: 360px; }
+  .backdrop-panel-left, .backdrop-panel-right { width: min(38vw, 420px); height: min(38vw, 420px); }
+}
+@media (max-width: 860px) {
+  .landing-brandbar { padding: 1.15rem 1rem 0; }
+  .landing-main { padding: 1rem 1rem 2rem; align-items: flex-start; }
+  .landing-portals-shell { width: 100%; padding: 1.35rem 1rem 1rem; border-radius: 24px; }
+  .landing-selector-heading h1 { font-size: clamp(2.35rem, 12vw, 3.8rem); }
+  .landing-portal-grid { grid-template-columns: 1fr; }
+  .landing-portal-grid .minimal-portal-card { min-height: auto; }
+  .backdrop-panel-left, .backdrop-panel-right, .backdrop-panel-bottom { opacity: .12; }
+}
+
+
+/* Premium emotional landing refresh */
+.roadmap-landing-only {
+  background:
+    radial-gradient(circle at 14% 10%, rgba(93, 129, 184, 0.14), transparent 24%),
+    radial-gradient(circle at 84% 12%, rgba(150, 183, 136, 0.12), transparent 24%),
+    radial-gradient(circle at 50% 88%, rgba(190, 145, 92, 0.10), transparent 22%),
+    linear-gradient(180deg, #f7f2e8 0%, #efe8dd 100%);
+}
+.roadmap-landing-only::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.02) 35%, rgba(73,56,30,.04) 100%);
+}
+.landing-brandbar {
+  padding: 1.7rem 2.2rem 0;
+}
+.landing-logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #c18f3a 0%, #936521 100%);
+  box-shadow: 0 20px 46px rgba(145, 106, 39, .26);
+}
+.landing-wordmark {
+  font-size: 1.78rem;
+  letter-spacing: -.03em;
+}
+.landing-main {
+  padding: 1.5rem 2.2rem 3rem;
+}
+.backdrop-panel {
+  opacity: .28;
+  filter: saturate(1.02) contrast(1.02) blur(.15px);
+}
+.backdrop-panel-left {
+  left: 1.6rem;
+  top: 7.5rem;
+  transform: rotate(-3deg);
+}
+.backdrop-panel-right {
+  right: 1.6rem;
+  top: 8.2rem;
+  transform: rotate(3deg);
+}
+.backdrop-panel-bottom {
+  width: min(42vw, 610px);
+  height: min(30vw, 430px);
+  bottom: -1.1rem;
+  opacity: .23;
+}
+.landing-portals-shell {
+  width: min(1750px, calc(100vw - 5rem));
+  padding: 2.45rem 2rem 2.05rem;
+  border-radius: 38px;
+  background: linear-gradient(180deg, rgba(255,255,255,.82) 0%, rgba(255,255,255,.70) 100%);
+  border: 1px solid rgba(220, 208, 186, .9);
+  box-shadow:
+    0 40px 90px rgba(48, 39, 25, .12),
+    inset 0 1px 0 rgba(255,255,255,.65);
+  backdrop-filter: blur(18px);
+}
+.landing-portals-shell::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:38px;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.22), transparent 16%),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.28), transparent 28%);
+}
+.landing-selector-heading {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.65rem;
+}
+.landing-selector-heading h1 {
+  font-size: clamp(3.3rem, 5.4vw, 5.85rem);
+  letter-spacing: -.065em;
+}
+.landing-subtitle {
+  margin: 1rem 0 0;
+  max-width: 46ch;
+  font-size: clamp(1.02rem, 1.2vw, 1.18rem);
+  line-height: 1.75;
+  color: #5e6774;
+}
+.landing-portal-grid {
+  position:relative;
+  z-index:1;
+  gap: 1.35rem;
+}
+.landing-portal-grid .minimal-portal-card {
+  min-height: 468px;
+  padding: 1.6rem 1.6rem 1.3rem;
+  border-radius: 30px;
+  border: 1px solid rgba(220, 208, 186, .95);
+  box-shadow:
+    0 18px 44px rgba(43, 40, 32, .05),
+    inset 0 1px 0 rgba(255,255,255,.6);
+}
+.landing-portal-grid .minimal-portal-card::before {
+  height: 6px;
+}
+.landing-portal-grid .minimal-portal-card::after {
+  content:'';
+  position:absolute;
+  inset:auto 0 0 0;
+  height: 42%;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.12));
+  pointer-events:none;
+}
+.landing-portal-grid .card-number {
+  font-size: 1.62rem;
+  font-weight: 800;
+  color: #95a0ad;
+  margin-bottom: 3.2rem;
+}
+.landing-portal-grid .card-role {
+  font-size: 1.02rem;
+  letter-spacing: .14em;
+}
+.landing-portal-grid .minimal-portal-card h3 {
+  font-size: clamp(2.1rem, 1.7vw, 2.48rem);
+  line-height: 1.03;
+}
+.landing-portal-grid .minimal-portal-card p:not(.card-role) {
+  font-size: 1.02rem;
+  line-height: 1.78;
+  color: #64707d;
+}
+.landing-portal-grid .card-action {
+  font-size: 1.02rem;
+  font-weight: 800;
+}
+.landing-portal-grid .minimal-portal-card:hover {
+  transform: translateY(-8px) scale(1.004);
+  box-shadow: 0 22px 56px rgba(43, 40, 32, .10), inset 0 1px 0 rgba(255,255,255,.65);
+}
+.landing-portal-grid .minimal-portal-card.clinician-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(239,245,255,.98) 100%);
+}
+.landing-portal-grid .minimal-portal-card.researcher-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(244,240,252,.98) 100%);
+}
+.landing-portal-grid .minimal-portal-card.model-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(250,243,231,.98) 100%);
+}
+.landing-portal-grid .minimal-portal-card.community-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(242,247,239,.98) 100%);
+}
+.landing-portal-grid .minimal-portal-card.community-card {
+  box-shadow: 0 18px 44px rgba(65, 90, 54, .07), inset 0 1px 0 rgba(255,255,255,.65);
+}
+@media (max-width: 1400px) {
+  .landing-portals-shell { width: min(1450px, calc(100vw - 3rem)); }
+}
+@media (max-width: 860px) {
+  .landing-brandbar { padding: 1.1rem 1rem 0; }
+  .landing-main { padding: 1rem 1rem 2rem; }
+  .landing-portals-shell { width: 100%; padding: 1.4rem 1rem 1rem; border-radius: 26px; }
+  .landing-selector-heading h1 { font-size: clamp(2.45rem, 12vw, 3.9rem); }
+  .landing-subtitle { font-size: 1rem; line-height: 1.65; }
+  .backdrop-panel { opacity: .14; }
+}
+
+
+/* Human-centered clean landing revision */
+.roadmap-landing-only {
+  background:
+    radial-gradient(circle at 16% 10%, rgba(93, 129, 184, 0.10), transparent 24%),
+    radial-gradient(circle at 84% 12%, rgba(126, 160, 114, 0.09), transparent 24%),
+    radial-gradient(circle at 50% 88%, rgba(190, 145, 92, 0.08), transparent 22%),
+    linear-gradient(180deg, #f8f3ec 0%, #f1ebe2 100%);
+}
+.roadmap-landing-only::before {
+  background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.02) 38%, rgba(73,56,30,.03) 100%);
+}
+.landing-main {
+  padding: 2rem 2.2rem 3rem;
+}
+.landing-backdrop,
+.backdrop-panel,
+.backdrop-panel-left,
+.backdrop-panel-right,
+.backdrop-panel-bottom {
+  display: none !important;
+}
+.landing-portals-shell {
+  width: min(1720px, calc(100vw - 5rem));
+  padding: 2.7rem 2.15rem 2.1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,.88) 0%, rgba(255,255,255,.77) 100%);
+  box-shadow:
+    0 36px 80px rgba(48, 39, 25, .10),
+    inset 0 1px 0 rgba(255,255,255,.72);
+}
+.landing-selector-heading {
+  margin-bottom: 1.8rem;
+}
+.landing-selector-heading h1 {
+  max-width: 11ch;
+}
+.landing-subtitle {
+  max-width: 50ch;
+  margin-top: 1.1rem;
+  font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+  line-height: 1.82;
+  color: #5e6774;
+}
+.landing-portal-grid .minimal-portal-card {
+  min-height: 474px;
+  background: linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(252,249,244,.98) 100%);
+}
+.landing-portal-grid .minimal-portal-card p:not(.card-role) {
+  color: #636d7b;
+}
+.landing-portal-grid .minimal-portal-card.clinician-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(242,246,255,.99) 100%);
+}
+.landing-portal-grid .minimal-portal-card.researcher-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(245,242,252,.99) 100%);
+}
+.landing-portal-grid .minimal-portal-card.model-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(251,245,235,.99) 100%);
+}
+.landing-portal-grid .minimal-portal-card.community-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(243,248,241,.99) 100%);
+}
+.landing-portal-grid .minimal-portal-card.community-card h3 {
+  max-width: 8ch;
+}
+.landing-portal-grid .minimal-portal-card:hover {
+  transform: translateY(-7px);
+}
+@media (max-width: 860px) {
+  .landing-main { padding: 1rem 1rem 2rem; }
+  .landing-portals-shell { width: 100%; padding: 1.4rem 1rem 1rem; }
+}
