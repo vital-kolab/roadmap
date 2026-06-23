@@ -46,3 +46,7 @@ The simulation job tab remains a static mock request until a ROADMAP backend/com
 
 ## Knowledge User Hub
 Added `knowledge-hub.html`, a page for translating benchmark-supported ROADMAP evidence into reviewed tools, explanations, evidence cards, task aids, and deployable prototypes.
+
+
+## Landing page cross-browser rebuild
+The home page (`index.html`) now uses isolated inline CSS and unique `rm-*` classes to avoid old stylesheet cascade conflicts and browser-specific rendering differences between Chrome and Safari.
